@@ -1,0 +1,297 @@
+/* ═══════════════════════════════════════════
+   ENVIOSXPRESS — Swiss Corporate Design System
+   Tailwind CSS v4 Compatible
+   ═══════════════════════════════════════════ */
+
+@import "tailwindcss";
+
+/* ─── Theme Tokens (Tailwind v4) ─── */
+@theme {
+  --color-brand: #722F37;
+  --color-brand-light: #8E3B45;
+  --color-brand-dark: #5A242C;
+  --color-navy: #0F172A;
+  --color-navy-light: #334155;
+
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --shadow-swiss: 0 2px 40px rgba(0, 0, 0, 0.06);
+  --shadow-swiss-hover: 0 8px 60px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Base Styles ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: #000;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-style: italic;
+  line-height: 0.9;
+}
+
+/* ─── Utility Classes ─── */
+.section {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: 11rem;
+    padding-bottom: 11rem;
+  }
+}
+
+.container-swiss {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .container-swiss {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* ─── Buttons ─── */
+.btn-primary {
+  background-color: var(--color-brand);
+  color: #fff;
+  padding: 1rem 2.5rem;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: #000;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: scale(0.97) translateY(0);
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-outline {
+  border: 2px solid #000;
+  color: #000;
+  background: transparent;
+  padding: 1rem 2.5rem;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background-color: #000;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-outline:active {
+  transform: scale(0.97) translateY(0);
+}
+
+/* ─── Quote Widget ─── */
+.quote-widget {
+  background: #fff;
+  border: 1px solid #f3f4f6;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-swiss);
+}
+
+@media (min-width: 1024px) {
+  .quote-widget {
+    padding: 3rem;
+  }
+}
+
+.input-swiss {
+  width: 100%;
+  background-color: #f9fafb;
+  border: none;
+  border-bottom: 2px solid #e5e7eb;
+  padding: 1rem 0;
+  color: #000;
+  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.input-swiss::placeholder {
+  color: #d1d5db;
+}
+
+.input-swiss:focus {
+  border-bottom-color: var(--color-brand);
+}
+
+.label-swiss {
+  display: block;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #9ca3af;
+  margin-bottom: 0.75rem;
+}
+
+/* ─── Animations ─── */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes counter-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-in {
+  opacity: 0;
+  transform: translateY(2rem);
+}
+
+.animate-in.is-revealed {
+  animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-4 {
+  animation-delay: 0.4s;
+}
+
+.transition-swiss {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Accessibility: Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-in {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .transition-swiss,
+  .btn-primary,
+  .btn-outline {
+    transition: none;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Focus States (Accessibility) ─── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background-color: var(--color-brand);
+  color: #fff;
+}
