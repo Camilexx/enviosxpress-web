@@ -1,4 +1,4 @@
-import { Star, Quote, ArrowRight } from 'lucide-react'
+import { Star, ArrowRight } from 'lucide-react'
 
 const testimonios = [
     {
