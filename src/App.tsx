@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import LogosEmpresas from './components/LogosEmpresas'
 import SocialProof from './components/SocialProof'
 import TrustBanner from './components/TrustBanner'
 import Servicios from './components/Servicios'
@@ -34,6 +35,7 @@ function App() {
     <>
       <Navbar />
       <Hero />
+      <LogosEmpresas />
       <SocialProof />
       <TrustBanner />
       <Servicios />
