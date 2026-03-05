@@ -21,12 +21,64 @@ const testimonios = [
         ciudad: 'Cuenca',
         texto: 'Precisión en los tiempos de entrega y un soporte corporativo que entiende la urgencia del sector tecnológico.',
         rating: 5,
+    },
+    {
+        nombre: 'Sofia Ramos',
+        cargo: 'CEO E-commerce',
+        ciudad: 'Manta',
+        texto: 'El mejor aliado para nuestras rutas en la costa. Seguridad total y excelente comunicación en cada etapa.',
+        rating: 5,
+    },
+    {
+        nombre: 'Roberto Cando',
+        cargo: 'Supply Chain Manager',
+        ciudad: 'Santo Domingo',
+        texto: 'Sencillez y potencia. Los reportes y el control que tenemos ahora nos han permitido optimizar costos.',
+        rating: 5,
+    },
+    {
+        nombre: 'Patricia Ortiz',
+        cargo: 'Directora de Operaciones',
+        ciudad: 'Loja',
+        texto: 'Su cobertura en el sur del país es inigualable. Han cumplido donde otros operadores fallaron.',
+        rating: 5,
+    },
+    {
+        nombre: 'Francisco Silva',
+        cargo: 'Fundador TechRetail',
+        ciudad: 'Ambato',
+        texto: 'La tecnología detrás de EnviosXpress es lo que los separa del resto. Son el futuro de la logística.',
+        rating: 5,
+    },
+    {
+        nombre: 'Gabriel Vega',
+        cargo: 'Export Manager',
+        ciudad: 'Guayaquil',
+        texto: 'Compromiso y profesionalismo. Manejan nuestra carga crítica con un nivel de detalle impresionante.',
+        rating: 5,
     }
 ]
 
 export default function Testimonios() {
     return (
-        <section id="testimonios" className="section relative bg-white overflow-hidden border-t border-gray-100" aria-label="Testimonios de clientes">
+        <section id="testimonios" className="section relative bg-white overflow-hidden border-t border-gray-100 py-24 lg:py-32" aria-label="Testimonios de clientes">
+            {/* Custom Styles for Infinite Marquee */}
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                @keyframes marquee {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .animate-marquee {
+                    display: flex;
+                    width: max-content;
+                    animation: marquee 50s linear infinite;
+                }
+                .animate-marquee:hover {
+                    animation-play-state: paused;
+                }
+            `}} />
+
             {/* Giant Background typography */}
             <div className="absolute top-10 left-0 w-full overflow-hidden pointer-events-none select-none z-0 opacity-[0.02]">
                 <h2 className="text-[200px] lg:text-[280px] font-black tracking-tighter italic text-black whitespace-nowrap leading-none">
@@ -34,8 +86,8 @@ export default function Testimonios() {
                 </h2>
             </div>
 
-            <div className="container-swiss relative z-10">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 lg:mb-24 gap-8">
+            <div className="container-swiss relative z-10 mb-16 lg:mb-20">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <div className="max-w-3xl animate-in is-revealed">
                         <div className="inline-block border border-black/10 bg-gray-50 text-black font-black text-[10px] uppercase tracking-[0.3em] px-4 py-2 mb-6 rounded-full">
                             Validación Técnica
@@ -63,36 +115,40 @@ export default function Testimonios() {
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-center">
-                    {testimonios.map((t, i) => (
+            {/* Marquee Wrapper */}
+            <div className="relative w-full overflow-hidden py-10">
+                {/* Visual fading shadows on edges */}
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
+
+                <div className="animate-marquee gap-8 px-4">
+                    {/* Double the array for seamless scrolling */}
+                    {[...testimonios, ...testimonios].map((t, i) => (
                         <div
                             key={i}
-                            className={`p-8 lg:p-12 relative group animate-in is-revealed transition-all duration-500 ${i === 1 ? 'bg-black text-white shadow-2xl lg:scale-105 z-10 hover:shadow-[0_20px_60px_rgba(114,47,55,0.25)] border-b-4 border-brand' : 'bg-gray-50 border border-gray-100 text-black hover:border-black/20 hover:bg-white hover:-translate-y-2'}`}
-                            style={{ animationDelay: `${i * 0.15}s` }}
+                            className="w-[350px] md:w-[450px] p-8 lg:p-10 bg-gray-50 border border-gray-100 text-black hover:border-brand/40 hover:bg-white hover:-translate-y-2 transition-all duration-500 group flex flex-col h-full shrink-0"
                         >
-                            {/* Graphic Quote Icon */}
-                            <Quote size={80} className={`absolute top-6 right-6 opacity-5 transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-12 ${i === 1 ? 'text-white' : 'text-black'}`} strokeWidth={1} aria-hidden="true" />
-
-                            <div className="flex items-center gap-1 mb-8 relative z-10">
+                            <div className="flex items-center gap-1 mb-6">
                                 {Array.from({ length: t.rating }).map((_, j) => (
-                                    <Star key={j} size={16} className="fill-brand text-brand" aria-hidden="true" />
+                                    <Star key={j} size={14} className="fill-brand text-brand" aria-hidden="true" />
                                 ))}
                             </div>
 
-                            <blockquote className={`text-base lg:text-lg font-medium mb-10 leading-relaxed italic relative z-10 ${i === 1 ? 'text-gray-200' : 'text-gray-600'}`}>
+                            <blockquote className="text-sm md:text-base font-medium mb-8 leading-relaxed italic text-gray-600 flex-grow">
                                 "{t.texto}"
                             </blockquote>
 
-                            <div className="flex items-center gap-4 pt-6 border-t border-current/10 relative z-10">
-                                <div className={`w-12 h-12 flex items-center justify-center font-black text-xs rounded-full select-none shadow-inner ${i === 1 ? 'bg-brand text-white' : 'bg-black text-white'}`} aria-hidden="true">
+                            <div className="flex items-center gap-4 pt-6 border-t border-black/5">
+                                <div className="w-10 h-10 bg-black text-white flex items-center justify-center font-black text-[10px] rounded-full group-hover:bg-brand transition-colors" aria-hidden="true">
                                     {t.nombre.split(' ').map(n => n[0]).join('')}
                                 </div>
                                 <div>
-                                    <cite className={`text-sm font-black not-italic block uppercase tracking-tight ${i === 1 ? 'text-white' : 'text-black'}`}>
+                                    <cite className="text-sm font-black not-italic block uppercase tracking-tight text-black">
                                         {t.nombre}
                                     </cite>
-                                    <p className={`text-[10px] font-bold uppercase tracking-widest mt-1 ${i === 1 ? 'text-gray-400' : 'text-gray-400'}`}>
+                                    <p className="text-[9px] font-bold uppercase tracking-widest mt-0.5 text-gray-400">
                                         {t.cargo} — {t.ciudad}
                                     </p>
                                 </div>
@@ -100,13 +156,15 @@ export default function Testimonios() {
                         </div>
                     ))}
                 </div>
+            </div>
 
+            <div className="container-swiss relative z-10">
                 {/* Trust CTA */}
-                <div className="mt-20 lg:mt-32 pt-12 border-t border-gray-100 text-center animate-in is-revealed">
+                <div className="mt-16 lg:mt-24 pt-12 text-center animate-in is-revealed">
                     <p className="text-gray-500 font-bold mb-8 text-sm uppercase tracking-widest">
                         Únete a la red logística más confiable del país hoy mismo
                     </p>
-                    <a href="#cotizador" className="btn-primary group">
+                    <a href="#cotizador" className="btn-primary group inline-flex items-center gap-2">
                         Sincronizar Operativa
                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                     </a>
