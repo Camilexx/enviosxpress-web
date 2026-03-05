@@ -28,12 +28,7 @@ export default function Hero() {
                         </div>
 
                         <div className="animate-in animate-delay-2 is-revealed relative">
-                            {/* Giant faded text behind */}
-                            <div className="absolute -left-10 -top-8 text-[120px] lg:text-[180px] font-black italic text-black/[0.02] whitespace-nowrap select-none pointer-events-none tracking-tighter">
-                                ENVIOS<br />XPRESS
-                            </div>
-
-                            <h1 className="relative text-6xl md:text-7xl lg:text-[6rem] font-black italic tracking-tighter text-black mb-6 leading-[0.85] uppercase">
+                            <h1 className="relative text-5xl sm:text-7xl lg:text-[6rem] font-black italic tracking-tighter text-black mb-6 leading-[0.85] uppercase">
                                 Dominamos <br />
                                 La <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-600">Logística</span> <br />
                                 Del Ecuador
@@ -46,7 +41,7 @@ export default function Hero() {
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 items-center relative z-10 w-full max-w-xl">
-                                <a href="#cotizador" className="w-full sm:w-auto group relative inline-flex items-center justify-center bg-brand text-white px-10 py-5 text-sm font-black uppercase tracking-[0.2em] shadow-[0_15px_30px_rgba(114,47,55,0.25)] hover:shadow-[0_20px_40px_rgba(114,47,55,0.4)] hover:bg-black hover:scale-105 transition-all duration-300">
+                                <a href="#cotizador" className="w-full sm:w-auto min-h-[56px] group relative inline-flex items-center justify-center bg-brand text-white px-10 py-5 text-sm font-black uppercase tracking-[0.2em] shadow-[0_15px_30px_rgba(114,47,55,0.25)] hover:shadow-[0_20px_40px_rgba(114,47,55,0.4)] hover:bg-black hover:scale-105 transition-all duration-300">
                                     <span className="relative z-10 flex items-center">
                                         Cotizar Envío
                                         <ArrowRight size={20} className="ml-3 group-hover:translate-x-2 transition-transform" />
@@ -55,13 +50,13 @@ export default function Hero() {
 
                                 <div className="h-px w-10 bg-gray-300 hidden sm:block"></div>
 
-                                <a href="#servicios" className="w-full sm:w-auto group inline-flex items-center justify-center bg-transparent text-black px-8 py-5 text-sm font-black uppercase tracking-[0.2em] border-2 border-gray-300 hover:border-black hover:bg-black hover:text-white transition-all duration-300 shadow-sm">
+                                <a href="#servicios" className="w-full sm:w-auto min-h-[56px] group inline-flex items-center justify-center bg-transparent text-black px-8 py-5 text-sm font-black uppercase tracking-[0.2em] border-2 border-gray-300 hover:border-black hover:bg-black hover:text-white transition-all duration-300 shadow-sm">
                                     Ver Servicios
                                 </a>
                             </div>
 
                             {/* Trust Features Inline */}
-                            <div className="mt-14 flex flex-wrap gap-4 sm:gap-6 items-center text-xs font-black text-gray-500 uppercase tracking-[0.2em]">
+                            <div className="mt-14 flex flex-wrap gap-y-4 gap-x-6 items-center text-[10px] sm:text-xs font-black text-gray-500 uppercase tracking-[0.2em]">
                                 <span className="flex items-center gap-2"><div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center"><ShieldCheck size={12} className="text-green-600" /></div> 100% Seguro</span>
                                 <span className="w-1.5 h-1.5 rounded-full bg-gray-300 hidden sm:block" />
                                 <span className="flex items-center gap-2"><div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center"><Truck size={12} className="text-blue-600" /></div> Todo el País</span>

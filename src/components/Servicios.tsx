@@ -37,7 +37,7 @@ export default function Servicios() {
                         <div className="inline-block border border-brand/20 bg-brand/5 text-brand font-black text-[10px] uppercase tracking-[0.3em] px-4 py-2 mb-6 rounded-full shadow-sm">
                             Impulsa tu Negocio
                         </div>
-                        <h2 className="text-5xl lg:text-7xl font-black text-black italic tracking-tighter uppercase mb-6 leading-[0.9]">
+                        <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black text-black italic tracking-tighter uppercase mb-6 leading-[0.9]">
                             Soluciones <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-600">Especializadas</span>
                         </h2>
@@ -57,8 +57,8 @@ export default function Servicios() {
                             <div
                                 key={i}
                                 className={`p-8 lg:p-10 relative group transition-all duration-500 flex flex-col h-full animate-in is-revealed ${isMain
-                                        ? 'bg-black text-white shadow-[0_20px_50px_rgba(114,47,55,0.4)] lg:scale-105 border-b-4 border-brand z-10'
-                                        : 'bg-gray-50 border border-gray-100 text-black hover:bg-white hover:border-black/20 hover:shadow-xl hover:-translate-y-2'
+                                    ? 'bg-black text-white shadow-[0_20px_50px_rgba(114,47,55,0.4)] lg:scale-105 border-b-4 border-brand z-10'
+                                    : 'bg-gray-50 border border-gray-100 text-black hover:bg-white hover:border-black/20 hover:shadow-xl hover:-translate-y-2'
                                     }`}
                                 style={{ animationDelay: `${i * 0.15}s` }}
                             >
@@ -77,8 +77,8 @@ export default function Servicios() {
                                 )}
 
                                 <div className={`mb-8 inline-flex p-4 rounded-full border transition-all duration-300 group-hover:scale-110 shadow-sm ${isMain
-                                        ? 'bg-brand border-brand text-white shadow-[0_0_15px_rgba(114,47,55,0.5)]'
-                                        : 'bg-white border-gray-200 text-brand group-hover:border-brand/40 group-hover:bg-brand/5'
+                                    ? 'bg-brand border-brand text-white shadow-[0_0_15px_rgba(114,47,55,0.5)]'
+                                    : 'bg-white border-gray-200 text-brand group-hover:border-brand/40 group-hover:bg-brand/5'
                                     }`}>
                                     <Icon size={28} strokeWidth={2.5} />
                                 </div>
@@ -106,8 +106,8 @@ export default function Servicios() {
                                 <a
                                     href="#cotizador"
                                     className={`mt-auto w-full flex items-center justify-center gap-3 py-4 text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 group/btn ${isMain
-                                            ? 'bg-brand text-white hover:bg-white hover:text-black border border-brand hover:border-white shadow-[0_0_20px_rgba(114,47,55,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)]'
-                                            : 'bg-white border border-black/20 text-black hover:bg-black hover:text-white'
+                                        ? 'bg-brand text-white hover:bg-white hover:text-black border border-brand hover:border-white shadow-[0_0_20px_rgba(114,47,55,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)]'
+                                        : 'bg-white border border-black/20 text-black hover:bg-black hover:text-white'
                                         }`}
                                 >
                                     SOLICITAR ASESORÍA

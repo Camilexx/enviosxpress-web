@@ -77,12 +77,12 @@ export default function Navbar() {
 
                     {/* Mobile Toggle */}
                     <button
-                        className="md:hidden text-black transition-colors duration-200 active:scale-90 p-2 cursor-pointer"
+                        className="md:hidden text-black transition-colors duration-200 active:scale-90 p-4 -mr-2 cursor-pointer flex items-center justify-center min-w-[48px] min-h-[48px]"
                         onClick={() => setMobileOpen(true)}
                         aria-label="Abrir menú de navegación"
                         aria-expanded={mobileOpen}
                     >
-                        <Menu size={28} />
+                        <Menu size={32} />
                     </button>
                 </div>
             </nav>
@@ -98,16 +98,16 @@ export default function Navbar() {
 
             {/* Mobile Sidebar */}
             <div
-                className={`fixed inset-0 z-[100] bg-white transition-transform duration-400 ease-out ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                className={`fixed inset-y-0 right-0 z-[100] w-[85%] sm:w-[400px] bg-white shadow-2xl transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1) ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}
                 role="dialog"
                 aria-label="Menú de navegación"
                 aria-modal="true"
             >
-                <div className="p-8 h-full flex flex-col">
-                    <div className="flex justify-between items-center mb-16">
-                        <Logo height={42} />
+                <div className="p-6 sm:p-10 h-full flex flex-col">
+                    <div className="flex justify-between items-center mb-12">
+                        <Logo height={38} />
                         <button
-                            className="text-black bg-gray-50 p-3 rounded-full hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
+                            className="text-black bg-gray-50 p-4 rounded-full hover:bg-gray-100 transition-colors duration-200 cursor-pointer flex items-center justify-center min-w-[48px] min-h-[48px]"
                             onClick={() => setMobileOpen(false)}
                             aria-label="Cerrar menú de navegación"
                         >
@@ -115,39 +115,42 @@ export default function Navbar() {
                         </button>
                     </div>
 
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-2">
                         {links.map((link) => (
                             <a
                                 key={link.href}
                                 href={link.href}
                                 onClick={() => setMobileOpen(false)}
-                                className="text-3xl font-black tracking-tighter border-b border-gray-50 pb-5 hover:pl-3 transition-all duration-200 hover:text-brand cursor-pointer"
+                                className="text-3xl font-black tracking-tighter border-b border-gray-50 py-5 hover:pl-3 transition-all duration-300 hover:text-brand cursor-pointer flex items-center justify-between group"
                             >
                                 {link.label}
+                                <ArrowRight size={24} className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-brand" />
                             </a>
                         ))}
 
-                        <div className="mt-8 flex flex-col gap-4">
+                        <div className="mt-8 flex flex-col gap-3">
                             <a
                                 href="#rastreo"
                                 onClick={() => setMobileOpen(false)}
-                                className="flex items-center gap-4 text-lg font-black text-gray-400 hover:text-black transition-colors duration-200 p-2 cursor-pointer"
+                                className="flex items-center gap-4 text-base font-black text-gray-500 hover:text-black transition-colors duration-200 py-4 px-2 cursor-pointer border border-gray-100 rounded-xl"
                             >
-                                <PackageSearch size={22} /> Rastrear Envío
+                                <div className="p-3 bg-gray-50 rounded-lg text-brand"><PackageSearch size={22} /></div>
+                                RASTREAR ENVÍO
                             </a>
                             <a
                                 href="#login"
                                 onClick={() => setMobileOpen(false)}
-                                className="flex items-center gap-4 text-lg font-black text-gray-400 hover:text-black transition-colors duration-200 p-2 cursor-pointer"
+                                className="flex items-center gap-4 text-base font-black text-gray-500 hover:text-black transition-colors duration-200 py-4 px-2 cursor-pointer border border-gray-100 rounded-xl"
                             >
-                                <User size={22} /> Ingreso Clientes
+                                <div className="p-3 bg-gray-50 rounded-lg text-brand"><User size={22} /></div>
+                                INGRESO CLIENTES
                             </a>
                             <a
                                 href="#contacto"
                                 onClick={() => setMobileOpen(false)}
-                                className="btn-primary w-full justify-center mt-4 py-5 text-sm cursor-pointer"
+                                className="btn-primary w-full justify-center mt-6 py-6 text-sm font-black tracking-[0.3em] cursor-pointer shadow-lg shadow-brand/20 active:scale-[0.98]"
                             >
-                                CONTACTO <ArrowRight size={22} className="ml-2" />
+                                CONTACTO <ArrowRight size={20} className="ml-3" />
                             </a>
                         </div>
                     </div>
