@@ -1,4 +1,4 @@
-import { Truck, DollarSign, Package, ArrowRight, Check } from 'lucide-react'
+import { Truck, DollarSign, Package, ArrowRight, Check, Sparkles } from 'lucide-react'
 
 export default function Servicios() {
     const services = [
@@ -27,28 +27,32 @@ export default function Servicios() {
     ]
 
     return (
-        <section id="servicios" className="section bg-white border-t border-gray-100 relative" aria-label="Nuestros servicios">
-            {/* Subtle background mesh */}
-            <div className="absolute inset-0 z-0 opacity-[0.02]" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        <section id="servicios" className="section bg-white border-t border-gray-100 relative overflow-hidden" aria-label="Nuestros servicios">
+            {/* Design accents */}
+            <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-gray-50 to-transparent pointer-events-none opacity-50" />
 
             <div className="container-swiss relative z-10">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 lg:mb-24 gap-6 animate-in is-revealed">
+                <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 lg:mb-32 gap-10 animate-in gpu-accel">
                     <div className="max-w-3xl">
-                        <div className="inline-block border border-brand/20 bg-brand/5 text-brand font-black text-[10px] uppercase tracking-[0.3em] px-4 py-2 mb-6 rounded-full shadow-sm">
-                            Impulsa tu Negocio
+                        <div className="inline-block border border-brand/20 glass-brand text-brand font-black text-[10px] uppercase tracking-[0.4em] px-6 py-2.5 mb-8 rounded-full shadow-sm">
+                            Portfolio de Especialidades
                         </div>
-                        <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black text-black italic tracking-tighter uppercase mb-6 leading-[0.9]">
+                        <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-black italic tracking-tighter uppercase mb-8 leading-[0.85]">
                             Soluciones <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-red-600">Especializadas</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-br from-brand via-red-600 to-black animate-gradient-x">Estratégicas</span>
                         </h2>
-                        <p className="text-gray-500 font-medium leading-relaxed text-lg max-w-2xl">
-                            Diseñamos la logística perfecta para que tú te enfoques en escalar ventas. Nosotros nos
-                            encargamos de que tus productos lleguen de forma segura y veloz a todo el Ecuador.
+                        <p className="text-gray-500 font-medium leading-relaxed text-xl max-w-2xl">
+                            Diseñamos la arquitectura logística perfecta para que tú te enfoques en escalar ventas. Nosotros nos
+                            encargamos de que tus activos lleguen con precisión quirúrgica.
                         </p>
+                    </div>
+
+                    <div className="hidden lg:flex items-center gap-4 text-gray-300 font-black text-[10px] tracking-[0.5em] vertical-rl rotate-180 select-none pb-2">
+                        SCALABLE LOGISTICS SYSTEM
                     </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14 items-stretch">
                     {services.map((service, i) => {
                         const Icon = service.icon;
                         const isMain = service.isHighlight;
@@ -56,47 +60,40 @@ export default function Servicios() {
                         return (
                             <div
                                 key={i}
-                                className={`p-8 lg:p-10 relative group transition-all duration-500 flex flex-col h-full animate-in is-revealed ${isMain
-                                    ? 'bg-black text-white shadow-[0_20px_50px_rgba(114,47,55,0.4)] lg:scale-105 border-b-4 border-brand z-10'
-                                    : 'bg-gray-50 border border-gray-100 text-black hover:bg-white hover:border-black/20 hover:shadow-xl hover:-translate-y-2'
+                                className={`p-10 lg:p-14 relative group transition-all duration-700 flex flex-col h-full animate-in gpu-accel ${isMain
+                                    ? 'bg-black text-white shadow-[0_40px_90px_-20px_rgba(114,47,55,0.5)] lg:scale-110 z-10 rounded-[2rem] border border-brand/20'
+                                    : 'bg-white border border-gray-100 text-black hover:border-brand/30 hover:shadow-2xl hover:-translate-y-4 rounded-[2rem]'
                                     }`}
                                 style={{ animationDelay: `${i * 0.15}s` }}
                             >
-                                {/* Watermark Icon */}
-                                <Icon
-                                    size={120}
-                                    className={`absolute top-6 right-6 transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-12 pointer-events-none ${isMain ? 'text-white/5' : 'text-black/[0.03]'}`}
-                                    strokeWidth={1}
-                                />
-
-                                {/* Badge for highlighted card */}
+                                {/* Floating Badge for highlight */}
                                 {service.badge && (
-                                    <div className="absolute -top-4 left-8 bg-brand text-white font-black text-[10px] uppercase tracking-widest px-4 py-2 shadow-lg shadow-brand/40 animate-pulse">
-                                        {service.badge}
+                                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-brand text-white font-black text-[9px] uppercase tracking-[0.4em] px-6 py-2.5 shadow-2xl shadow-brand/50 rounded-full flex items-center gap-2 group-hover:scale-110 transition-transform">
+                                        <Sparkles size={12} className="animate-pulse" /> {service.badge}
                                     </div>
                                 )}
 
-                                <div className={`mb-8 inline-flex p-4 rounded-full border transition-all duration-300 group-hover:scale-110 shadow-sm ${isMain
-                                    ? 'bg-brand border-brand text-white shadow-[0_0_15px_rgba(114,47,55,0.5)]'
-                                    : 'bg-white border-gray-200 text-brand group-hover:border-brand/40 group-hover:bg-brand/5'
+                                <div className={`mb-12 inline-flex p-5 rounded-2xl border transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 shadow-sm ${isMain
+                                    ? 'bg-brand border-brand text-white shadow-[0_15px_30px_rgba(114,47,55,0.4)]'
+                                    : 'bg-gray-50 border-gray-100 text-brand group-hover:border-brand/30 group-hover:bg-brand/5'
                                     }`}>
-                                    <Icon size={28} strokeWidth={2.5} />
+                                    <Icon size={36} strokeWidth={2.5} />
                                 </div>
 
-                                <h3 className={`text-2xl font-black mb-4 tracking-tighter italic uppercase ${isMain ? 'text-white' : 'text-black'}`}>
+                                <h3 className={`text-3xl font-black mb-6 tracking-tighter italic uppercase ${isMain ? 'text-white' : 'text-black'}`}>
                                     {service.title}
                                 </h3>
-                                <p className={`text-sm font-medium mb-10 leading-relaxed ${isMain ? 'text-gray-300' : 'text-gray-500'}`}>
+                                <p className={`text-base font-medium mb-12 leading-relaxed ${isMain ? 'text-gray-400' : 'text-gray-500'}`}>
                                     {service.desc}
                                 </p>
 
-                                <ul className="space-y-4 mb-12 flex-grow">
+                                <ul className="space-y-5 mb-14 flex-grow">
                                     {service.features.map((f, j) => (
-                                        <li key={j} className="flex items-start gap-3">
-                                            <div className={`mt-0.5 rounded-full p-0.5 ${isMain ? 'bg-white/10 text-brand' : 'bg-brand/10 text-brand'}`}>
-                                                <Check size={12} strokeWidth={4} />
+                                        <li key={j} className="flex items-start gap-4 group/item">
+                                            <div className={`mt-1 rounded-full p-1 transition-transform group-hover/item:scale-125 ${isMain ? 'bg-brand/20 text-brand' : 'bg-brand/10 text-brand'}`}>
+                                                <Check size={14} strokeWidth={4} />
                                             </div>
-                                            <span className={`text-xs font-bold uppercase tracking-widest leading-snug ${isMain ? 'text-gray-300' : 'text-gray-600'}`}>
+                                            <span className={`text-[11px] font-black uppercase tracking-widest leading-snug transition-colors ${isMain ? 'text-gray-300 group-hover/item:text-white' : 'text-gray-600 group-hover/item:text-black'}`}>
                                                 {f}
                                             </span>
                                         </li>
@@ -105,13 +102,13 @@ export default function Servicios() {
 
                                 <a
                                     href="#cotizador"
-                                    className={`mt-auto w-full flex items-center justify-center gap-3 py-4 text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 group/btn ${isMain
-                                        ? 'bg-brand text-white hover:bg-white hover:text-black border border-brand hover:border-white shadow-[0_0_20px_rgba(114,47,55,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)]'
-                                        : 'bg-white border border-black/20 text-black hover:bg-black hover:text-white'
+                                    className={`mt-auto w-full flex items-center justify-between px-8 py-6 text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 group/btn rounded-xl ${isMain
+                                        ? 'bg-brand text-white hover:bg-white hover:text-black shadow-[0_20px_40px_-5px_rgba(114,47,55,0.5)]'
+                                        : 'bg-black text-white hover:bg-brand hover:shadow-xl'
                                         }`}
                                 >
-                                    SOLICITAR ASESORÍA
-                                    <ArrowRight size={16} className={`transition-transform duration-300 group-hover/btn:translate-x-1 ${isMain ? 'text-current' : 'text-brand group-hover/btn:text-white'}`} />
+                                    <span>EXPLORAR ASESORÍA</span>
+                                    <ArrowRight size={18} className="transition-transform duration-500 group-hover/btn:translate-x-2" />
                                 </a>
                             </div>
                         )

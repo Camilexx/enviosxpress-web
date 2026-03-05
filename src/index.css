@@ -59,6 +59,58 @@ h4 {
   }
 }
 
+/* ─── Premium Glassmorphism & Effects ─── */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-brand {
+  background: rgba(114, 47, 55, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(114, 47, 55, 0.1);
+}
+
+.mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+/* ─── Advanced Animations ─── */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(114, 47, 55, 0.2);
+}
+
+.gpu-accel {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
 .container-swiss {
   max-width: 1440px;
   margin-left: auto;
