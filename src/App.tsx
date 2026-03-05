@@ -9,6 +9,7 @@ import Cotizador from './components/Cotizador'
 import ComoFunciona from './components/ComoFunciona'
 import Cobertura from './components/Cobertura'
 import Testimonios from './components/Testimonios'
+import Beneficios from './components/Beneficios'
 import CTAFinal from './components/CTAFinal'
 import Footer from './components/Footer'
 import WhatsAppFloat from './components/WhatsAppFloat'
@@ -39,6 +40,7 @@ function App() {
       <SocialProof />
       <TrustBanner />
       <Servicios />
+      <Beneficios />
       <Cotizador />
       <ComoFunciona />
       <Cobertura />
