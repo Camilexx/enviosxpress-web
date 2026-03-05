@@ -41,7 +41,7 @@ export default function Navbar() {
                 <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between">
                     {/* Brand */}
                     <a href="#inicio" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-swiss" aria-label="EnviosXpress - Ir al inicio">
-                        <Logo height={scrolled ? 36 : 46} className="transition-swiss" />
+                        <Logo height={scrolled ? 52 : 68} className="transition-all duration-300 transform origin-left" />
                     </a>
 
                     {/* Desktop Navigation */}

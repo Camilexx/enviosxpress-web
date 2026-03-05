@@ -10,7 +10,7 @@ export default function Footer() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-16 mb-20">
                     {/* Brand Section */}
                     <div className="lg:col-span-4">
-                        <Logo white height={50} className="mb-8" />
+                        <Logo white height={95} className="mb-10" />
                         <p className="text-gray-400 font-medium mb-8 leading-relaxed max-w-sm text-sm">
                             Infraestructura logística terrestre premium.
                             Conectando el mercado ecuatoriano con soluciones de alta eficiencia.
