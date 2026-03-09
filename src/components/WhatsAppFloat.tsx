@@ -12,7 +12,7 @@ export default function WhatsAppFloat() {
 
     const handleWhatsApp = () => {
         const text = "Hola EnviosXpress, necesito asesoría con un envío corporativo."
-        window.open(`https://wa.me/593987654321?text=${encodeURIComponent(text)}`, '_blank')
+        window.open(`https://wa.me/593967489002?text=${encodeURIComponent(text)}`, '_blank')
     }
 
     return (

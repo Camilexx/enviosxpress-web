@@ -55,7 +55,7 @@ export default function Cotizador() {
 
     const handleWhatsApp = () => {
         const message = `Hola EnviosXpress, solicito cotización:\nOrigen: ${origen}\nDestino: ${destino}\nPeso: ${peso}kg\nServicio: ${tipo}`
-        window.open(`https://wa.me/593XXXXXXXXX?text=${encodeURIComponent(message)}`, '_blank')
+        window.open(`https://wa.me/593967489002?text=${encodeURIComponent(message)}`, '_blank')
     }
 
     return (

@@ -92,7 +92,7 @@ export default function FAQ() {
                                 </p>
 
                                 <a
-                                    href="https://wa.me/593987654321?text=Hola%20EnviosXpress%2C%20tengo%20una%20consulta"
+                                    href="https://wa.me/593967489002?text=Hola%20EnviosXpress%2C%20tengo%20una%20consulta"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btn-outline inline-flex text-[10px] py-3 px-6"

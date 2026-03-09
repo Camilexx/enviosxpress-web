@@ -65,11 +65,11 @@ export default function Footer() {
                             </div>
                             <div className="flex gap-3 items-start">
                                 <Phone size={18} className="text-brand shrink-0 mt-0.5" aria-hidden="true" />
-                                <a href="tel:+593987654321" className="text-sm font-medium hover:text-brand transition-colors duration-200 cursor-pointer">+593 9 8765 4321</a>
+                                <a href="tel:+593967489002" className="text-sm font-medium hover:text-brand transition-colors duration-200 cursor-pointer">+593 96 748 9002</a>
                             </div>
                             <div className="flex gap-3 items-start">
                                 <Mail size={18} className="text-brand shrink-0 mt-0.5" aria-hidden="true" />
-                                <a href="mailto:operaciones@enviosxpress.ec" className="text-sm font-medium hover:text-brand transition-colors duration-200 cursor-pointer">operaciones@enviosxpress.ec</a>
+                                <a href="mailto:enviosexpress.uio@gmail.com" className="text-sm font-medium hover:text-brand transition-colors duration-200 cursor-pointer">enviosexpress.uio@gmail.com</a>
                             </div>
                         </address>
                     </div>

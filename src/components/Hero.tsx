@@ -61,7 +61,7 @@ export default function Hero() {
                                     </span>
                                 </a>
 
-                                <a href="https://wa.me/593987654321?text=Hola%20EnviosXpress%2C%20necesito%20información%20sobre%20envíos" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto min-h-[56px] sm:min-h-[64px] group inline-flex items-center justify-center bg-white text-black px-8 sm:px-10 py-4 sm:py-6 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] border-2 border-gray-100 hover:border-black hover:shadow-xl transition-all duration-500 rounded-sm">
+                                <a href="https://wa.me/593967489002?text=Hola%20EnviosXpress%2C%20necesito%20información%20sobre%20envíos" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto min-h-[56px] sm:min-h-[64px] group inline-flex items-center justify-center bg-white text-black px-8 sm:px-10 py-4 sm:py-6 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.25em] sm:tracking-[0.3em] border-2 border-gray-100 hover:border-black hover:shadow-xl transition-all duration-500 rounded-sm">
                                     Hablar con Asesor <ArrowRight size={16} className="ml-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                                 </a>
                             </div>

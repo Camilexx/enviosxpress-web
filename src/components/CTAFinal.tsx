@@ -18,7 +18,7 @@ export default function CTAFinal() {
             text += `TELÉFONO: ${telefono}\n`
             text += `PERFIL: ${tipo}\n`
             const encoded = encodeURIComponent(text)
-            window.open(`https://wa.me/593987654321?text=${encoded}`, '_blank')
+            window.open(`https://wa.me/593967489002?text=${encoded}`, '_blank')
             setSending(false)
         }, 500)
     }
@@ -43,8 +43,8 @@ export default function CTAFinal() {
 
                         <div className="space-y-5">
                             {[
-                                { icon: <Phone size={16} />, text: '+593 9 8765 4321', label: 'Contacto Directo' },
-                                { icon: <Mail size={16} />, text: 'ventas@enviosxpress.ec', label: 'Cotizaciones' },
+                                { icon: <Phone size={16} />, text: '+593 96 748 9002', label: 'Contacto Directo' },
+                                { icon: <Mail size={16} />, text: 'enviosexpress.uio@gmail.com', label: 'Cotizaciones' },
                                 { icon: <Clock size={16} />, text: '08:00 — 18:00', label: 'Atención Inmediata' }
                             ].map((item, i) => (
                                 <div key={i} className="flex items-center gap-5">
