@@ -31,25 +31,44 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "DeliveryService"],
       "name": "EnviosXpress",
-      "description": "Servicio de courier y logística nacional en Ecuador",
+      "description": "Servicio de courier premium en Ecuador. Envíos nacionales en 24 horas garantizados.",
       "url": "https://enviosxpress.ec",
+      "logo": "https://enviosxpress.ec/favicon.svg",
+      "image": "https://enviosxpress.ec/og-image.png",
       "telephone": "+593987654321",
+      "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Av. República El Salvador",
         "addressLocality": "Quito",
+        "addressRegion": "Pichincha",
+        "postalCode": "170150",
         "addressCountry": "EC"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -0.180653,
+        "longitude": -78.484111
+      },
       "areaServed": "Ecuador",
-      "serviceType": ["Courier", "Paquetería", "Logística B2B", "Contraentrega COD"]
+      "sameAs": [
+        "https://www.facebook.com/enviosxpress",
+        "https://www.instagram.com/enviosxpress"
+      ],
+      "availableDeliveryMethod": {
+        "@type": "DeliveryMethod",
+        "name": "Envío Express 24h"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "08:00",
+        "closes": "20:00"
+      }
     }
     </script>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet" />
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#722F37" />

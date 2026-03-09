@@ -5,23 +5,35 @@ export default function Servicios() {
         {
             title: 'COURIER NACIONAL',
             icon: Truck,
-            desc: 'Expande el alcance de tu negocio a nivel nacional con nuestra robusta red terrestre y entregas oportunas.',
-            features: ['Cobertura total en 24 provincias', 'Recolección a domicilio coordinada', 'Seguridad total de tu mercadería'],
+            desc: 'Llega a clientes en todo el país sin complicaciones. Entregas rápidas y seguras para negocios y personas.',
+            features: [
+                'Llega a más clientes (24 provincias)',
+                'Ahorra tiempo: Recogemos a domicilio',
+                'Cero estrés con seguro incluido'
+            ],
             isHighlight: false,
         },
         {
             title: 'E-COMMERCE COD',
             badge: 'MÁS SOLICITADO',
             icon: DollarSign,
-            desc: 'Multiplica tus ventas con pago contraentrega. Nosotros nos encargamos del riesgo logístico y los cobros de tus productos.',
-            features: ['Liquidación eficiente y confiable', 'Tasas mínimas de devolución', 'Asesoría y soporte por WhatsApp'],
+            desc: 'Aumenta tus ventas ofreciendo pago al recibir. Entregamos el paquete, cobramos y te depositamos rápido.',
+            features: [
+                'Recibe tu dinero en 24-48 horas',
+                'Reduce drásticamente devoluciones',
+                'Soporte real y rápido por WhatsApp'
+            ],
             isHighlight: true,
         },
         {
-            title: 'LOGÍSTICA B2B',
+            title: 'CARGA EMPRESARIAL',
             icon: Package,
-            desc: 'Soluciones de transporte de volumen para empresas que exigen capacidad, cuidado y precisión corporativa.',
-            features: ['Manejo cuidadoso de inventarios', 'Consolidación de carga segura', 'Tarifas preferenciales por volumen'],
+            desc: 'Mueve grandes volúmenes de mercadería de forma segura y rentable con tarifas especiales para negocios.',
+            features: [
+                'Tu mercadería llega siempre intacta',
+                'Ahorra dinero en envíos frecuentes',
+                'Asesor personal asignado a tu cuenta'
+            ],
             isHighlight: false,
         }
     ]
@@ -35,20 +47,19 @@ export default function Servicios() {
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 lg:mb-32 gap-10 animate-in gpu-accel">
                     <div className="max-w-3xl">
                         <div className="inline-block border border-brand/20 glass-brand text-brand font-black text-[10px] uppercase tracking-[0.4em] px-6 py-2.5 mb-8 rounded-full shadow-sm">
-                            Portfolio de Especialidades
+                            Servicios de Crecimiento
                         </div>
                         <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-black italic tracking-tighter uppercase mb-8 leading-[0.85]">
-                            Soluciones <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-br from-brand via-red-600 to-black animate-gradient-x">Estratégicas</span>
+                            Soluciones a <br />
+                            <span className="text-metallic-brand">Tu Medida</span>
                         </h2>
-                        <p className="text-gray-500 font-medium leading-relaxed text-xl max-w-2xl">
-                            Diseñamos la arquitectura logística perfecta para que tú te enfoques en escalar ventas. Nosotros nos
-                            encargamos de que tus activos lleguen con precisión quirúrgica.
+                        <p className="text-gray-500 font-medium leading-relaxed text-lg max-w-2xl">
+                            Elegimos la logística adecuada para que tú solo te preocupes por vender más. Desde paquetes pequeños hasta carga pesada, lo hacemos simple y seguro.
                         </p>
                     </div>
 
                     <div className="hidden lg:flex items-center gap-4 text-gray-300 font-black text-[10px] tracking-[0.5em] vertical-rl rotate-180 select-none pb-2">
-                        SCALABLE LOGISTICS SYSTEM
+                        GROWTH PARTNERS
                     </div>
                 </div>
 
@@ -68,7 +79,7 @@ export default function Servicios() {
                             >
                                 {/* Floating Badge for highlight */}
                                 {service.badge && (
-                                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-brand text-white font-black text-[9px] uppercase tracking-[0.4em] px-6 py-2.5 shadow-2xl shadow-brand/50 rounded-full flex items-center gap-2 group-hover:scale-110 transition-transform">
+                                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-brand text-white font-black text-[9px] uppercase tracking-[0.4em] px-6 py-2.5 shadow-2xl shadow-brand/50 rounded-full flex items-center gap-2 group-hover:scale-110 transition-transform whitespace-nowrap">
                                         <Sparkles size={12} className="animate-pulse" /> {service.badge}
                                     </div>
                                 )}
@@ -90,7 +101,7 @@ export default function Servicios() {
                                 <ul className="space-y-5 mb-14 flex-grow">
                                     {service.features.map((f, j) => (
                                         <li key={j} className="flex items-start gap-4 group/item">
-                                            <div className={`mt-1 rounded-full p-1 transition-transform group-hover/item:scale-125 ${isMain ? 'bg-brand/20 text-brand' : 'bg-brand/10 text-brand'}`}>
+                                            <div className={`mt-1 shrink-0 rounded-full p-1 transition-transform group-hover/item:scale-125 ${isMain ? 'bg-brand/20 text-brand' : 'bg-brand/10 text-brand'}`}>
                                                 <Check size={14} strokeWidth={4} />
                                             </div>
                                             <span className={`text-[11px] font-black uppercase tracking-widest leading-snug transition-colors ${isMain ? 'text-gray-300 group-hover/item:text-white' : 'text-gray-600 group-hover/item:text-black'}`}>
@@ -107,7 +118,7 @@ export default function Servicios() {
                                         : 'bg-black text-white hover:bg-brand hover:shadow-xl'
                                         }`}
                                 >
-                                    <span>EXPLORAR ASESORÍA</span>
+                                    <span>COTIZAR SERVICIO</span>
                                     <ArrowRight size={18} className="transition-transform duration-500 group-hover/btn:translate-x-2" />
                                 </a>
                             </div>

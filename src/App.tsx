@@ -10,6 +10,7 @@ import ComoFunciona from './components/ComoFunciona'
 import Cobertura from './components/Cobertura'
 import Testimonios from './components/Testimonios'
 import Beneficios from './components/Beneficios'
+import FAQ from './components/FAQ'
 import CTAFinal from './components/CTAFinal'
 import Footer from './components/Footer'
 import WhatsAppFloat from './components/WhatsAppFloat'
@@ -26,10 +27,20 @@ function App() {
       })
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' })
 
-    const elements = document.querySelectorAll('.animate-in')
-    elements.forEach(el => observer.observe(el))
+    // Re-observe after initial render + small delay for dynamic content
+    const setupObserver = () => {
+      const elements = document.querySelectorAll('.animate-in:not(.is-revealed)')
+      elements.forEach(el => observer.observe(el))
+    }
 
-    return () => observer.disconnect()
+    setupObserver()
+    // Re-run after a short delay to catch dynamically rendered elements
+    const timer = setTimeout(setupObserver, 100)
+
+    return () => {
+      observer.disconnect()
+      clearTimeout(timer)
+    }
   }, [])
 
   return (
@@ -45,6 +56,7 @@ function App() {
       <ComoFunciona />
       <Cobertura />
       <Testimonios />
+      <FAQ />
       <CTAFinal />
       <Footer />
       <WhatsAppFloat />

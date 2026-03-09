@@ -73,14 +73,14 @@ export default function Beneficios() {
                     {beneficios.map((b, i) => (
                         <div
                             key={i}
-                            className="group relative bg-white p-10 lg:p-12 border border-gray-100 hover:border-brand/30 hover:shadow-[0_20px_60px_-15px_rgba(114,47,55,0.15)] transition-all duration-500 animate-in gpu-accel"
+                            className="group relative bg-white p-10 lg:p-12 border border-gray-100 hover-lift hover-glow-brand animate-in gpu-accel"
                             style={{ animationDelay: `${i * 0.1}s` }}
                         >
                             {/* Hover accent decoration */}
                             <div className="absolute top-0 right-0 w-24 h-24 bg-brand/5 rotate-45 translate-x-12 -translate-y-12 group-hover:bg-brand/10 transition-colors duration-500" />
 
                             <div className={`w-20 h-20 ${b.bg} ${b.color} rounded-sm flex items-center justify-center mb-10 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500 shadow-sm border border-brand/5`}>
-                                <b.icon size={36} strokeWidth={2} />
+                                <b.icon size={36} strokeWidth={2} className="group-hover:animate-pulse" />
                             </div>
 
                             <h3 className="text-2xl font-black text-black mb-4 tracking-tight uppercase group-hover:text-brand transition-colors italic">
@@ -98,7 +98,7 @@ export default function Beneficios() {
                 </div>
 
                 {/* Final CTA Strip */}
-                <div className="mt-24 lg:mt-32 p-10 lg:p-16 bg-black text-white relative overflow-hidden animate-in shadow-2xl gpu-accel">
+                <div className="mt-24 lg:mt-32 p-10 lg:p-16 bg-black text-white relative overflow-hidden animate-in shadow-2xl gpu-accel rounded-sm">
                     <div className="absolute top-0 right-0 w-2/3 h-full bg-brand/10 skew-x-[-25deg] translate-x-1/3" />
 
                     <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
@@ -111,8 +111,8 @@ export default function Beneficios() {
                                 Únete a la infraestructura logística más moderna del país.
                             </p>
                         </div>
-                        <a href="#contacto" className="btn-primary whitespace-nowrap px-16 py-7 text-sm hover-glow group">
-                            SULICITAR CUENTA CORPORATIVA <ArrowRight size={20} className="ml-4 group-hover:translate-x-2 transition-transform" />
+                        <a href="#contacto" className="btn-primary btn-shine-effect whitespace-nowrap px-16 py-7 text-sm hover-glow group">
+                            SOLICITAR CUENTA CORPORATIVA <ArrowRight size={20} className="ml-4 group-hover:translate-x-2 transition-transform" />
                         </a>
                     </div>
                 </div>

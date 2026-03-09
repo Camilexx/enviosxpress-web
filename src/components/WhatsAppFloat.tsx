@@ -6,7 +6,7 @@ export default function WhatsAppFloat() {
     const [closed, setClosed] = useState(false)
 
     useEffect(() => {
-        const timer = setTimeout(() => setShowBubble(true), 4000)
+        const timer = setTimeout(() => setShowBubble(true), 45000)
         return () => clearTimeout(timer)
     }, [])
 

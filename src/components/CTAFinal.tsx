@@ -32,20 +32,20 @@ export default function CTAFinal() {
                 <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
                     {/* Copy Section */}
                     <div className="animate-in">
-                        <div className="text-brand font-black text-[11px] uppercase tracking-[0.25em] mb-3">Apertura de Cuenta</div>
+                        <div className="text-brand font-black text-[11px] uppercase tracking-[0.25em] mb-3">Empieza a Enviar Hoy</div>
                         <h2 className="text-4xl lg:text-6xl font-black mb-8 leading-[0.9] tracking-tighter">
-                            Inicie su Operativa <br /> Hoy Mismo
+                            Simplifica tu <br /> Logística Hoy
                         </h2>
                         <p className="text-gray-400 font-medium mb-10 max-w-md leading-relaxed text-base">
-                            Contáctenos para definir un plan logístico a la medida de su corporación.
-                            Sin contratos de permanencia, solo eficiencia pura.
+                            Únete a los emprendedores y empresas que ya confían sus entregas en nosotros.
+                            Sin contratos forzosos. Date de alta y comienza a enviar de inmediato.
                         </p>
 
                         <div className="space-y-5">
                             {[
-                                { icon: <Phone size={16} />, text: '+593 9 8765 4321', label: 'Línea de Operaciones' },
-                                { icon: <Mail size={16} />, text: 'contacto@enviosxpress.ec', label: 'Correo Corporativo' },
-                                { icon: <Clock size={16} />, text: '08:00 — 18:00', label: 'Horario de Atención' }
+                                { icon: <Phone size={16} />, text: '+593 9 8765 4321', label: 'Contacto Directo' },
+                                { icon: <Mail size={16} />, text: 'ventas@enviosxpress.ec', label: 'Cotizaciones' },
+                                { icon: <Clock size={16} />, text: '08:00 — 18:00', label: 'Atención Inmediata' }
                             ].map((item, i) => (
                                 <div key={i} className="flex items-center gap-5">
                                     <div className="text-brand p-2.5 bg-white/5 rounded-full" aria-hidden="true">{item.icon}</div>
@@ -59,16 +59,16 @@ export default function CTAFinal() {
                     </div>
 
                     {/* Form */}
-                    <div className="bg-white p-8 lg:p-12 animate-in shadow-2xl" style={{ animationDelay: '0.2s' }}>
+                    <div className="bg-white p-8 lg:p-12 animate-in shadow-2xl hover-lift" style={{ animationDelay: '0.2s' }}>
                         <div className="mb-8">
-                            <h3 className="text-black font-black text-xl tracking-tight mb-2 uppercase">Registro Técnico</h3>
+                            <h3 className="text-black font-black text-xl tracking-tight mb-2 uppercase">Solicitar Información</h3>
                             <div className="w-10 h-[3px] bg-brand" />
                         </div>
 
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
                                 <label htmlFor="cta-nombre" className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">
-                                    Identificación / Nombre
+                                    Nombre de Empresa / Personal
                                 </label>
                                 <input
                                     id="cta-nombre"
@@ -77,13 +77,13 @@ export default function CTAFinal() {
                                     onChange={(e) => setNombre(e.target.value)}
                                     required
                                     className="w-full bg-gray-50 border-b-2 border-gray-200 p-3.5 font-bold text-black focus:border-brand outline-none transition-colors duration-200"
-                                    placeholder="Nombre o razón social"
+                                    placeholder="¿Cómo te llamas?"
                                     autoComplete="name"
                                 />
                             </div>
                             <div>
                                 <label htmlFor="cta-telefono" className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">
-                                    Contacto Directo
+                                    WhatsApp de Contacto
                                 </label>
                                 <input
                                     id="cta-telefono"
@@ -92,13 +92,13 @@ export default function CTAFinal() {
                                     onChange={(e) => setTelefono(e.target.value)}
                                     required
                                     className="w-full bg-gray-50 border-b-2 border-gray-200 p-3.5 font-bold text-black focus:border-brand outline-none transition-colors duration-200"
-                                    placeholder="Número de teléfono"
+                                    placeholder="Tu mejor número de contacto"
                                     autoComplete="tel"
                                 />
                             </div>
                             <div>
                                 <label htmlFor="cta-perfil" className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">
-                                    Perfil de Usuario
+                                    ¿A qué te dedicas?
                                 </label>
                                 <select
                                     id="cta-perfil"
@@ -107,9 +107,9 @@ export default function CTAFinal() {
                                     required
                                     className="w-full bg-gray-50 border-b-2 border-gray-200 p-3.5 font-bold text-black focus:border-brand outline-none transition-colors duration-200 cursor-pointer"
                                 >
-                                    <option value="">Seleccionar perfil</option>
-                                    <option value="Emprendedor/E-commerce">Emprendedor / E-commerce</option>
-                                    <option value="Empresa Corporativa">Empresa Corporativa</option>
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="Emprendedor/E-commerce">Emprendedor / Tienda Online</option>
+                                    <option value="Empresa Corporativa">Empresa Grande</option>
                                     <option value="Importador/Mayorista">Importador / Mayorista</option>
                                 </select>
                             </div>
@@ -117,7 +117,7 @@ export default function CTAFinal() {
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label htmlFor="cta-ciudad" className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">
-                                        Ciudad Principal
+                                        Ciudad Base
                                     </label>
                                     <input
                                         id="cta-ciudad"
@@ -129,16 +129,16 @@ export default function CTAFinal() {
                                 </div>
                                 <div>
                                     <label htmlFor="cta-volumen" className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">
-                                        Envíos Mensuales
+                                        Envíos por Mes
                                     </label>
                                     <select
                                         id="cta-volumen"
                                         required
                                         className="w-full bg-gray-50 border-b-2 border-gray-200 p-3.5 font-bold text-black focus:border-brand outline-none transition-colors duration-200 cursor-pointer"
                                     >
-                                        <option value="">Volumen</option>
-                                        <option value="1-50">1 - 50</option>
-                                        <option value="51-200">51 - 200</option>
+                                        <option value="">Aproximado</option>
+                                        <option value="1-50">Menos de 50</option>
+                                        <option value="51-200">Entre 50 y 200</option>
                                         <option value="200+">Más de 200</option>
                                     </select>
                                 </div>
@@ -147,10 +147,10 @@ export default function CTAFinal() {
                             <button
                                 type="submit"
                                 disabled={sending}
-                                className="btn-primary w-full py-5 flex justify-between items-center px-8 group cursor-pointer disabled:opacity-60 disabled:cursor-wait"
+                                className="btn-primary btn-shine-effect w-full py-5 flex justify-between items-center px-8 group cursor-pointer disabled:opacity-60 disabled:cursor-wait"
                             >
                                 <span className="font-black text-xs uppercase tracking-widest">
-                                    {sending ? 'Procesando...' : 'Sincronizar Operativa'}
+                                    {sending ? 'Redirigiendo a WhatsApp...' : 'Quiero Empezar a Enviar'}
                                 </span>
                                 {sending ? (
                                     <Loader2 size={18} className="animate-spin" />
