@@ -1,60 +1,98 @@
-import { useState, useMemo } from 'react'
-import { Calculator, Check, MessageSquare, Truck, Zap } from 'lucide-react'
+import { useState, useMemo, useEffect } from 'react'
+import { Calculator, Check, MessageSquare, Package, FileText, Shield, Loader2 } from 'lucide-react'
+import { supabase } from '../lib/supabase'
 
-const CIUDADES_ECUADOR = [
-    'Quito', 'Guayaquil', 'Cuenca', 'Ambato', 'Manta',
-    'Machala', 'Portoviejo', 'Loja', 'Riobamba', 'Esmeraldas',
-    'Ibarra', 'Santo Domingo', 'Latacunga', 'Babahoyo', 'Tulcán',
-    'Durán', 'Quevedo', 'Milagro', 'Azogues', 'Guaranda',
-    'Puyo', 'Tena', 'Nueva Loja', 'Coca', 'Macas',
-]
+type TipoEnvio = 'documento' | 'carga'
 
-type TipoServicio = 'estandar' | 'express'
-
-const TARIFAS: Record<TipoServicio, { min: number; max: number; precio: number }[]> = {
-    estandar: [
-        { min: 0, max: 1, precio: 3.50 },
-        { min: 1, max: 3, precio: 4.50 },
-        { min: 3, max: 5, precio: 6.00 },
-        { min: 5, max: 10, precio: 8.50 },
-        { min: 10, max: 20, precio: 12.00 },
-        { min: 20, max: 50, precio: 18.00 },
-    ],
-    express: [
-        { min: 0, max: 1, precio: 5.50 },
-        { min: 1, max: 3, precio: 7.00 },
-        { min: 3, max: 5, precio: 9.50 },
-        { min: 5, max: 10, precio: 13.00 },
-        { min: 10, max: 20, precio: 18.00 },
-        { min: 20, max: 50, precio: 28.00 },
-    ],
-}
+type City = { name: string, province: string, zone_name: string, city_tier: string, delivery_time: string }
+type Rate = { zone_name: string, city_tier: string, base_price: number, extra_kg_price_min: number, extra_kg_price_max: number, discount_pct: number }
 
 export default function Cotizador() {
     const [origen, setOrigen] = useState('')
     const [destino, setDestino] = useState('')
-    const [peso, setPeso] = useState('')
-    const [tipo, setTipo] = useState<TipoServicio>('estandar')
+    const [tipo, setTipo] = useState<TipoEnvio>('carga')
+    const [peso, setPeso] = useState('1.0')
+    const [conSeguro, setConSeguro] = useState(false)
+    const [valorDeclarado, setValorDeclarado] = useState('')
     const [showResult, setShowResult] = useState(false)
 
+    const [cities, setCities] = useState<City[]>([])
+    const [rates, setRates] = useState<Rate[]>([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        async function loadData() {
+            setLoading(true)
+            const [cRes, rRes] = await Promise.all([
+                supabase.from('cities').select('*').order('name'),
+                supabase.from('shipping_rates').select('*').eq('is_active', true)
+            ])
+            if (cRes.data) setCities(cRes.data)
+            if (rRes.data) setRates(rRes.data)
+            setLoading(false)
+        }
+        loadData()
+    }, [])
+
     const resultado = useMemo(() => {
-        const pesoNum = parseFloat(peso)
-        if (!origen || !destino || !pesoNum || pesoNum <= 0) return null
+        if (!origen || !destino || rates.length === 0 || cities.length === 0) return null
 
-        if (pesoNum > 50) return { tipo: 'personalizado' as const, precio: 0 }
+        const destCity = cities.find(c => c.name === destino)
+        if (!destCity) return null
 
-        const tarifas = TARIFAS[tipo]
-        const tarifa = tarifas.find(t => pesoNum > t.min && pesoNum <= t.max) || tarifas[tarifas.length - 1]
+        // La tarifa se asienta en la zona y jerarquía del DESTINO
+        const zone = destCity.zone_name
+        const tier = destCity.city_tier
+
+        const rate = rates.find(r => r.zone_name === zone && r.city_tier === tier)
+        if (!rate) return null
+
+        // Tarifa Base (hasta 5 kg)
+        const tarifaBase = Number(rate.base_price)
+        
+        // Kilos adicionales (solo carga > 5kg)
+        let recargoPeso = 0
+        const pesoNum = tipo === 'carga' ? parseFloat(peso || '0') : 0
+        
+        if (pesoNum > 50) {
+            return { tipo: 'personalizado' as const, precio: 0, tiempoEstimado: '' }
+        }
+
+        if (tipo === 'carga' && pesoNum > 5) {
+            const kilosExtra = Math.ceil(pesoNum - 5)
+            recargoPeso = kilosExtra * Number(rate.extra_kg_price_max) // Por defecto cobramos el max de esa zona
+        }
+
+        let total = tarifaBase + recargoPeso
+
+        // Descuentos porcentuales configurados en base de datos (Ej: 30% Zona Norte)
+        let descuento = 0
+        if (rate.discount_pct > 0) {
+            descuento = total * (rate.discount_pct / 100)
+            total = total - descuento
+        }
+
+        // Seguro 1%
+        let valorSeguro = 0
+        const valorDecNum = parseFloat(valorDeclarado || '0')
+        if (conSeguro && valorDecNum > 0) {
+            valorSeguro = valorDecNum * 0.01
+            total += valorSeguro
+        }
 
         return {
             tipo: 'calculado' as const,
-            precio: tarifa.precio,
-            tiempoEstimado: tipo === 'express' ? '24 horas' : '24-48 horas',
+            tarifaBase,
+            recargoPeso,
+            descuento,
+            valorSeguro,
+            precio: total,
+            tiempoEstimado: destCity.delivery_time || '24-48 horas',
         }
-    }, [origen, destino, peso, tipo])
+    }, [origen, destino, tipo, peso, conSeguro, valorDeclarado, cities, rates])
 
     const handleWhatsApp = () => {
-        const message = `Hola EnviosXpress, solicito cotización:\nOrigen: ${origen}\nDestino: ${destino}\nPeso: ${peso}kg\nServicio: ${tipo}`
+        const message = `Hola EnviosXpress, solicito cotización:\nOrigen: ${origen}\nDestino: ${destino}\nTipo: ${tipo === 'carga' ? 'Carga (' + peso + 'kg)' : 'Documento'}${conSeguro ? '\nSeguro sobre: $' + valorDeclarado : ''}`
         window.open(`https://wa.me/593967489002?text=${encodeURIComponent(message)}`, '_blank')
     }
 
@@ -64,21 +102,20 @@ export default function Cotizador() {
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
                     {/* Left: Content */}
                     <div className="animate-in">
-                        <div className="text-brand font-black text-[11px] uppercase tracking-[0.25em] mb-3">Eficiencia Técnica</div>
+                        <div className="text-brand font-black text-[11px] uppercase tracking-[0.25em] mb-3">Cotizador Oficial Inteligente</div>
                         <h2 className="text-4xl lg:text-6xl font-black text-black mb-6 leading-tight italic tracking-tighter">
-                            COTIZADOR <br /> <span className="text-metallic-brand">INSTANTÁNEO</span>
+                            COTIZA TU <br /> <span className="text-metallic-brand">ENVÍO AHORA</span>
                         </h2>
                         <p className="text-gray-500 mb-8 max-w-md font-medium text-base leading-relaxed">
-                            Cálculo de tarifas instantáneo basado en logística terrestre nacional.
-                            Sin cargos ocultos, precisión garantizada.
+                            Nuestras tarifas incluyen los 5 primeros kilos sin costo adicional. Precios fijos, rutas diarias aseguradas y descuentos automáticos (Ej: 30% en Zona Norte).
                         </p>
 
                         <div className="space-y-4">
                             {[
-                                'Recogida programada a domicilio',
-                                'Entrega puerta a puerta nacional',
-                                'Tarifas corporativas por volumen',
-                                'Seguridad y respaldo total'
+                                'Tarifa Plana Nacional (Hasta 5kg gratis)',
+                                'Seguro opcional (1% s/ valor declarado)',
+                                'Descuento 30% en Zona Norte',
+                                'Planes 15% Dto. para Emprendedores'
                             ].map((item, i) => (
                                 <div key={i} className="flex items-center gap-3 text-black font-bold text-sm">
                                     <div className="bg-brand rounded-full p-1 shrink-0">
@@ -92,121 +129,153 @@ export default function Cotizador() {
 
                     {/* Right: Widget */}
                     <div className="bg-black text-white p-8 lg:p-12 animate-in animate-delay-2 shadow-2xl relative overflow-hidden rounded-[2rem]">
-                        {/* Dramatic glow */}
                         <div className="absolute -top-32 -right-32 w-64 h-64 bg-brand/30 rounded-full blur-3xl pointer-events-none" />
 
-                        <div className="flex items-center gap-3 mb-10 pb-5 border-b border-white/10 relative z-10">
+                        <div className="flex items-center gap-3 mb-8 pb-5 border-b border-white/10 relative z-10">
                             <Calculator className="text-brand" size={24} aria-hidden="true" />
-                            <h3 className="text-xs font-black uppercase tracking-widest text-white">Tarifa Inmediata</h3>
+                            <h3 className="text-xs font-black uppercase tracking-widest text-white">Tarifa en Tiempo Real</h3>
                         </div>
 
-                        {!showResult ? (
-                            <form onSubmit={(e) => { e.preventDefault(); setShowResult(true) }} className="space-y-8 relative z-10">
+                        {loading ? (
+                            <div className="flex flex-col items-center justify-center py-12 relative z-10">
+                                <Loader2 className="w-8 h-8 text-brand animate-spin mb-4" />
+                                <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">Sincronizando Tarifas...</p>
+                            </div>
+                        ) : !showResult ? (
+                            <form onSubmit={(e) => { e.preventDefault(); setShowResult(true) }} className="space-y-6 relative z-10">
+                                
+                                <div className="flex gap-4 mb-2">
+                                    <button
+                                        type="button"
+                                        onClick={() => setTipo('documento')}
+                                        className={`flex-1 py-4 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest border transition-all duration-200 cursor-pointer ${tipo === 'documento' ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.2)]' : 'bg-transparent text-white border-white/20 hover:border-white/50'}`}
+                                    >
+                                        <FileText size={14} /> Documento
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setTipo('carga')}
+                                        className={`flex-1 py-4 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest border transition-all duration-200 cursor-pointer ${tipo === 'carga' ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.2)]' : 'bg-transparent text-white border-white/20 hover:border-white/50'}`}
+                                    >
+                                        <Package size={14} /> Carga
+                                    </button>
+                                </div>
+
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
-                                        <label htmlFor="cotizador-origen" className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-3">Ciudad Origen</label>
-                                        <select
-                                            id="cotizador-origen"
-                                            value={origen}
-                                            onChange={(e) => setOrigen(e.target.value)}
-                                            className="w-full bg-white/5 border-b border-white/20 p-4 font-bold text-white focus:border-brand outline-none transition-colors duration-200 cursor-pointer appearance-none"
-                                        >
+                                        <label htmlFor="cotizador-origen" className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Ciudad Origen</label>
+                                        <select id="cotizador-origen" value={origen} onChange={(e) => setOrigen(e.target.value)} required
+                                            className="w-full bg-white/5 border-b border-white/20 p-3 font-bold text-white focus:border-brand outline-none transition-colors duration-200 cursor-pointer appearance-none">
                                             <option value="" className="text-black">Seleccionar</option>
-                                            {CIUDADES_ECUADOR.map(c => <option key={c} value={c} className="text-black">{c}</option>)}
+                                            {cities.map(c => <option key={`orig_${c.name}`} value={c.name} className="text-black">{c.name}</option>)}
                                         </select>
                                     </div>
                                     <div>
-                                        <label htmlFor="cotizador-destino" className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-3">Ciudad Destino</label>
-                                        <select
-                                            id="cotizador-destino"
-                                            value={destino}
-                                            onChange={(e) => setDestino(e.target.value)}
-                                            className="w-full bg-white/5 border-b border-white/20 p-4 font-bold text-white focus:border-brand outline-none transition-colors duration-200 cursor-pointer appearance-none"
-                                        >
+                                        <label htmlFor="cotizador-destino" className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Ciudad Destino</label>
+                                        <select id="cotizador-destino" value={destino} onChange={(e) => setDestino(e.target.value)} required
+                                            className="w-full bg-white/5 border-b border-white/20 p-3 font-bold text-white focus:border-brand outline-none transition-colors duration-200 cursor-pointer appearance-none">
                                             <option value="" className="text-black">Seleccionar</option>
-                                            {CIUDADES_ECUADOR.map(c => <option key={c} value={c} className="text-black">{c}</option>)}
+                                            {cities.map(c => <option key={`dest_${c.name}`} value={c.name} className="text-black">{c.name}</option>)}
                                         </select>
                                     </div>
                                 </div>
 
+                                {tipo === 'carga' && (
+                                    <div>
+                                        <label htmlFor="cotizador-peso" className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Peso del Paquete (KG) - 5kg Gratis</label>
+                                        <input
+                                            id="cotizador-peso" type="number" value={peso} onChange={(e) => setPeso(e.target.value)} required
+                                            className="w-full bg-white/5 border-b border-white/20 p-3 font-bold text-white focus:border-brand outline-none transition-colors placeholder-white/30"
+                                            placeholder="Máximo 50kg" min="0.1" step="0.1"
+                                        />
+                                    </div>
+                                )}
+
                                 <div>
-                                    <label htmlFor="cotizador-peso" className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-3">Peso Estimado (KG)</label>
-                                    <input
-                                        id="cotizador-peso"
-                                        type="number"
-                                        value={peso}
-                                        onChange={(e) => setPeso(e.target.value)}
-                                        className="w-full bg-white/5 border-b border-white/20 p-4 font-bold text-white focus:border-brand outline-none transition-colors duration-200 placeholder-white/30"
-                                        placeholder="Ej: 5.0"
-                                        min="0.1"
-                                        step="0.1"
-                                    />
+                                    <label className="flex items-center gap-3 cursor-pointer group">
+                                        <div className="relative flex items-center justify-center w-5 h-5 border border-white/30 rounded bg-white/5 group-hover:border-brand transition-colors">
+                                            <input type="checkbox" className="opacity-0 absolute w-full h-full cursor-pointer" checked={conSeguro} onChange={(e) => setConSeguro(e.target.checked)} />
+                                            {conSeguro && <Check size={12} className="text-brand absolute" strokeWidth={4} />}
+                                        </div>
+                                        <span className="text-[10px] font-black text-gray-300 uppercase tracking-widest">Añadir Seguro (Recomendado)</span>
+                                    </label>
+                                    {conSeguro && (
+                                        <div className="mt-3 flex items-center gap-3">
+                                            <Shield size={16} className="text-brand flex-shrink-0" />
+                                            <input
+                                                type="number" value={valorDeclarado} onChange={(e) => setValorDeclarado(e.target.value)}
+                                                placeholder="Ej: 100 (Valor del producto en $)"
+                                                className="w-full bg-white/5 border-b border-brand/50 p-2 text-xs text-white outline-none"
+                                            />
+                                        </div>
+                                    )}
                                 </div>
 
-                                <div className="flex gap-4">
-                                    <button
-                                        type="button"
-                                        onClick={() => setTipo('estandar')}
-                                        className={`flex-1 py-5 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest border transition-all duration-200 cursor-pointer ${tipo === 'estandar' ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.2)]' : 'bg-transparent text-white border-white/20 hover:border-white/50'}`}
-                                    >
-                                        <Truck size={14} /> Estándar
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => setTipo('express')}
-                                        className={`flex-1 py-5 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest border transition-all duration-200 cursor-pointer ${tipo === 'express' ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.2)]' : 'bg-transparent text-white border-white/20 hover:border-white/50'}`}
-                                    >
-                                        <Zap size={14} /> Express
-                                    </button>
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    disabled={!resultado}
-                                    className="btn-primary w-full justify-center py-5 uppercase tracking-[0.2em] text-xs mt-4 disabled:opacity-50"
-                                >
-                                    Calcular Tarifa
+                                <button type="submit" disabled={!origen || !destino} className="btn-primary w-full justify-center py-4 uppercase tracking-[0.2em] text-[11px] mt-4 disabled:opacity-50">
+                                    Calcular Tarifa Oficial
                                 </button>
                             </form>
                         ) : (
-                            <div className="relative z-10 animate-in is-revealed py-4">
+                            <div className="relative z-10 animate-in is-revealed">
                                 {resultado?.tipo === 'calculado' ? (
                                     <div className="text-center">
-                                        <div className="text-brand font-black text-[10px] uppercase tracking-[0.3em] px-4 py-2 border border-brand/40 bg-brand/10 inline-block mb-8 rounded-full shadow-[0_0_15px_rgba(114,47,55,0.3)]">
-                                            Tu Tarifa Oficial
+                                        <div className="text-brand font-black text-[10px] uppercase tracking-[0.3em] px-4 py-2 border border-brand/40 bg-brand/10 inline-block mb-6 rounded-full shadow-[0_0_15px_rgba(114,47,55,0.3)]">
+                                            Cotización Oficial
                                         </div>
-                                        <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Total Estimado</div>
-
-                                        <div className="text-7xl lg:text-8xl font-black text-white mb-4 tracking-tighter italic tabular-nums drop-shadow-2xl text-metallic-brand">
+                                        <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total a Pagar</div>
+                                        <div className="text-6xl md:text-7xl font-black text-white mb-6 tracking-tighter italic tabular-nums text-metallic-brand">
                                             ${resultado.precio.toFixed(2)}
                                         </div>
 
-                                        <div className="text-[11px] font-black text-white mb-10 uppercase tracking-widest py-2">
-                                            Tiempo estimado: <span className="text-gray-400">{resultado.tiempoEstimado}</span>
+                                        <div className="space-y-2 mb-8 bg-white/5 p-4 rounded-xl border border-white/10 text-left">
+                                            <div className="flex justify-between text-xs text-gray-300">
+                                                <span>Tarifa Base (hasta 5kg):</span>
+                                                <span className="font-bold text-white">${resultado.tarifaBase.toFixed(2)}</span>
+                                            </div>
+                                            {resultado.recargoPeso > 0 && (
+                                                <div className="flex justify-between text-xs text-brand">
+                                                    <span>Exceso de Peso:</span>
+                                                    <span className="font-bold">+${resultado.recargoPeso.toFixed(2)}</span>
+                                                </div>
+                                            )}
+                                            {resultado.descuento > 0 && (
+                                                <div className="flex justify-between text-xs text-[#25D366]">
+                                                    <span>Descuento aplicado:</span>
+                                                    <span className="font-bold">-${resultado.descuento.toFixed(2)}</span>
+                                                </div>
+                                            )}
+                                            {resultado.valorSeguro > 0 && (
+                                                <div className="flex justify-between text-xs text-gray-300">
+                                                    <span>Seguro (1% val. decl.):</span>
+                                                    <span className="font-bold">+${resultado.valorSeguro.toFixed(2)}</span>
+                                                </div>
+                                            )}
+                                            <div className="pt-2 mt-2 border-t border-white/10 flex justify-between text-xs font-bold text-gray-400 uppercase tracking-widest">
+                                                <span>Tiempo Estimado:</span>
+                                                <span className="text-white">{resultado.tiempoEstimado}</span>
+                                            </div>
                                         </div>
 
-                                        <button onClick={handleWhatsApp} className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-5 px-8 font-black uppercase tracking-[0.2em] text-xs hover:bg-[#1DA851] transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-[0_15px_30px_rgba(37,211,102,0.3)] rounded-xl group cursor-pointer">
-                                            <MessageSquare size={20} className="group-hover:scale-110 transition-transform" />
-                                            Reservar por WhatsApp
+                                        <button onClick={handleWhatsApp} className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 font-black uppercase tracking-[0.2em] text-[11px] hover:bg-[#1DA851] transition-all duration-300 shadow-[0_15px_30px_rgba(37,211,102,0.3)] rounded-xl cursor-pointer">
+                                            <MessageSquare size={16} /> Cerrar Envío en WhatsApp
                                         </button>
 
-                                        <button onClick={() => setShowResult(false)} className="mt-8 text-[10px] text-gray-400 font-bold uppercase tracking-widest hover:text-white transition-colors cursor-pointer w-full">
+                                        <button onClick={() => setShowResult(false)} className="mt-6 text-[10px] text-gray-400 font-bold uppercase tracking-widest hover:text-white transition-colors cursor-pointer w-full">
                                             ← Nueva Cotización
                                         </button>
                                     </div>
                                 ) : (
-                                    <div className="bg-white/5 p-8 border-l-4 border-brand text-left backdrop-blur-sm shadow-2xl">
+                                    <div className="bg-white/5 p-8 border-l-4 border-brand text-left">
                                         <div className="font-black text-xs uppercase mb-3 text-metallic-brand tracking-widest flex items-center gap-2">
-                                            <Zap size={16} /> Carga Corporativa
+                                            <Package size={16} /> Carga Corporativa Viva
                                         </div>
-                                        <p className="text-sm text-gray-300 mb-8 font-medium leading-relaxed">
-                                            Los envíos mayores a 50kg requieren de una estructura operativa especial. Nuestro equipo B2B le asignará la tarifa más rentable y segura del mercado.
+                                        <p className="text-sm text-gray-300 mb-6 font-medium leading-relaxed">
+                                            Las cargas mayores a 50kg requieren estructura operativa especial. Solicite una tarifa bulk directamente a nuestro equipo.
                                         </p>
-                                        <button onClick={handleWhatsApp} className="btn-primary w-full justify-center py-5 uppercase tracking-[0.2em] text-[10px] rounded-xl cursor-pointer">
-                                            <MessageSquare size={16} className="mr-2" />
-                                            Contactar Equipo B2B
+                                        <button onClick={handleWhatsApp} className="btn-primary w-full justify-center py-4 uppercase tracking-[0.2em] text-[10px] rounded-xl cursor-pointer">
+                                            Contactar Equipo Carga
                                         </button>
-                                        <button onClick={() => setShowResult(false)} className="w-full text-center mt-6 text-[10px] text-gray-400 font-bold uppercase tracking-widest hover:text-white transition-colors cursor-pointer">
+                                        <button onClick={() => setShowResult(false)} className="w-full text-center mt-6 text-[10px] text-gray-400 font-bold uppercase tracking-widest">
                                             ← Nueva Cotización
                                         </button>
                                     </div>
