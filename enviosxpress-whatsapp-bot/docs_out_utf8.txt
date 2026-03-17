@@ -1,0 +1,1290 @@
+﻿=== EXCEL DATA ===
+
+Sheet: COBERTURA
+COBERTURA  NACIONAL 2026,,,
+PROVINCIA,CANT├ôN/PARROQUIA,TRAYECTO,TIEMPO DE ENTREGA ORIGEN QUITO
+AZUAY,CUENCA,PRINCIPAL,24 HORAS
+,BELLAVISTA,,24 HORAS
+,CA├æARIBAMBA,,24 HORAS
+,EL BAT├üN,,24 HORAS
+,EL SAGRARIO,,24 HORAS
+,EL VECINO,,24 HORAS
+,GIL RAM├ìREZ D├üVALOS,,24 HORAS
+,HUAYNAC├üPAC,,24 HORAS
+,MACH├üNGARA,,24 HORAS
+,MONAY,,24 HORAS
+,SAN BLAS,,24 HORAS
+,SAN SEBASTI├üN,,24 HORAS
+,SUCRE,,24 HORAS
+,TOTORACOCHA,,24 HORAS
+,YANUNCAY,,24 HORAS
+,HERMANO MIGUEL,,24 HORAS
+,CAPULISPAMBA,SECUNDARIO,48 HORAS
+,BA├æOS,,48 HORAS
+,RICAURTE,,48 HORAS
+,SAN JOAQUIN,,48 HORAS
+,SAYAUSI,,48 HORAS
+,TURI,,48 HORAS
+,SININCAY (RACAR),,48 HORAS
+,LUIS CORDERO,ESPECIAL,48 A 72 HORAS
+,SANTA ANA,,48 A 72 HORAS
+,TARQUI,,48 A 72 HORAS
+,VALLE,,48 A 72 HORAS
+,GIRON,,48 A 72 HORAS
+,GUALACEO,,48 A 72 HORAS
+CARCHI,TULC├üN,SECUNDARIO,24 HORAS
+,GONZ├üLEZ SU├üREZ,,24 HORAS
+,BOLIVAR,ESPECIAL,24 HORAS
+,HUACA,,24 A 48 HORAS
+,SAN GABRIEL,,24 A 48 HORAS
+,JULIO ANDRADE,,24 A 48 HORAS
+,MIRA,,24 A 48 HORAS
+CA├æAR,AZOGUES,ESPECIAL,48 HORAS
+,CA├æAR,,48 HORAS
+,EL TAMBO,,72 HORAS
+,BIBLIAN,,72 HORAS
+COTOPAXI,LATACUNGA,PRINCIPAL,24 HORAS
+,ELOY ALFARO  (SAN FELIPE),,24 HORAS
+,IGNACIO FLORES (PARQUE FLORES) ,,24 HORAS
+,JUAN MONTALVO (SAN SEBASTI├üN),,24 HORAS
+,LA MATRIZ,,24 HORAS
+,SAN BUENAVENTURA,,24 HORAS
+,MULALO (LASSO),ESPECIAL,LUNES
+,SALCEDO,,72 HORAS
+,PUJILI,,MARTES
+,SAQUISILI,,LUNES
+CHIMBORAZO,RIOBAMBA,PRINCIPAL,24 HORAS
+,LIZARZABURU,,24 HORAS
+,MALDONADO,,24 HORAS
+,VELASCO,,24 HORAS
+,VELOZ,,24 HORAS
+,YARUQU├ìES,,24 HORAS
+,GUANO RETIRO DE OFICINA RIOBAMBA,,RETIRO OFICINA RIOBAMBA
+GUAYAS,GUAYAQUIL,PRINCIPAL,24 HORAS
+,AYACUCHO,,24 HORAS
+,BOL├ìVAR  (SAGRARIO),,24 HORAS
+,CARBO (CONCEPCI├ôN),,24 HORAS
+,FEBRES CORDERO,,24 HORAS
+,GARC├ìA MORENO,,24 HORAS
+,LETAMENDI,,24 HORAS
+,NUEVE DE OCTUBRE,,24 HORAS
+,OLMEDO  (SAN ALEJO),,24 HORAS
+,ROCA,,24 HORAS
+,ROCAFUERTE,,24 HORAS
+,SUCRE,,24 HORAS
+,TARQUI,,48 HORAS
+,URDANETA,,48 HORAS
+,XIMENA,,48 HORAS
+,DURAN,SECUNDARIO,48 A 72 HORAS
+,EL RECREO,ESPECIAL,48 A 72 HORAS
+,ELOY ALFARO (DUR├üN),,48 A 72 HORAS
+,PASCUALES,,48 A 72 HORAS
+,LA PUNTILLA (SAT├ëLITE),,48 A 72 HORAS
+,SAMBOROND├ôN,,48 HORAS
+,LA AURORA (SAT├ëLITE),,MIERCOLES
+,LAUREL,,MIERCOLES
+,LIMONAL,,MIERCOLES
+,SAN CARLOS,,72 HORAS
+IMBABURA,IBARRA,PRINCIPAL,24 HORAS
+,ATUNTAQUI,,24 HORAS
+,OTAVALO,,24 HORAS
+,COTACACHI,ESPECIAL,MARTES Y JUEVES
+,SAN ANTONIO,SECUNDARIO,24 HORAS
+,ANTONIO ANTE,ESPECIAL,48 HORAS
+,ANDRADE MAR├ìN  (LOURDES),,48 HORAS
+,SAN JOSE DE CHALTURA,,48 HORAS
+,ANDRADE MAR├ìN  (LOURDES),,48 HORAS
+LOS RIOS,QUEVEDO,PRINCIPAL,24 HORAS
+,BUENA FE,SECUNDARIO,24 HORAS
+,SAN CAMILO,,24 HORAS
+,VALENCIA,,24 HORAS
+,LA MANA,,24 HORAS
+,EL EMPALME,ESPECIAL,MARTES - JUEVES - SABADO
+,SAN JUAN,,MARTES - JUEVES - SABADO
+,TRES POSTES,,MARTES - JUEVES - SABADO
+,BABAHOYO,,MARTES - JUEVES - SABADO
+,VENTANAS,,MARTES - JUEVES - SABADO
+,JUJAN,,MARTES - JUEVES - SABADO
+,MILAGRO,,MARTES - JUEVES - SABADO
+MANABI,MANTA,PRINCIPAL,24 HORAS - DESPUES DE 13:00 PM
+,PORTOVIEJO,,24 HORAS
+,TOSAGUA,,24 HORAS
+,FLAVIO ALFARO,,24 HORAS
+,ROCAFUERTE,,24 HORAS
+,PICOAZA,,24 HORAS
+,MONTECRISTI,,24 HORAS
+,CHONE,,24 HORAS
+,EL CARMEN,,24 HORAS
+,BAHIA,ESPECIAL,VIERNES
+,CALCETA,,MIERCOLES - SABADO
+PICHINCHA,QUITO,PRINCIPAL,24 HORAS
+,BELISARIO QUEVEDO,,24 HORAS
+,CARCEL├ëN,,24 HORAS
+,CENTRO HIST├ôRICO,,24 HORAS
+,CHILIBULO,,24 HORAS
+,CHILLOGALLO,,24 HORAS
+,CHIMBACALLE,,24 HORAS
+,COCHAPAMBA,,24 HORAS
+,COMIT├ë DEL PUEBLO,,24 HORAS
+,COTOCOLLAO,,24 HORAS
+,EL CONDADO,,24 HORAS
+,I├æAQUITO,,24 HORAS
+,ITCHIMBIA,,24 HORAS
+,JIPIJAPA,,24 HORAS
+,KENNEDY,,24 HORAS
+,LA ARGELIA,,24 HORAS
+,LA CONCEPCI├ôN,,24 HORAS
+,LA FERROVIARIA,,24 HORAS
+,LA LIBERTAD,,24 HORAS
+,LA MAGDALENA,,24 HORAS
+,LA MENA,,24 HORAS
+,LA MERCED (CENTRO HISTORICO),,24 HORAS
+,MARISCAL SUCRE,,24 HORAS
+,PONCEANO,,24 HORAS
+,QUITUMBE,,24 HORAS
+,RUMIPAMBA,,24 HORAS
+,SAN BARTOLO,,24 HORAS
+,SAN ISIDRO DEL INCA,,24 HORAS
+,SOLANDA,,24 HORAS
+,TURUBAMBA,,24 HORAS
+,SAN JUAN,,24 HORAS
+,CALDERON (CARAPUNGO),,24 HORAS
+,CONOCOTO,SECUNDARIO,24 HORAS
+,CUMBAYA,,24 HORAS
+,GUAMAN├ì,,24 HORAS
+,LA ECUATORIANA,,24 HORAS
+,LLANO CHICO,,24 HORAS
+,POMASQUI,,24 HORAS
+,SAN ANTONIO,,24 HORAS
+,TUMBACO,,24 HORAS
+,ZAMBIZA,,24 HORAS
+,COTOGCHOA,,24 HORAS
+,SAN RAFAEL,,24 HORAS
+,SANGOLQU├ì,,24 HORAS
+,COCHAPAMBA,,24 HORAS
+,AMAGUA├æA,,24 A 48 HORAS
+,TAMBILLO,,24 A 48 HORAS
+,UYUMBICHO,,24 A 48 HORAS
+,TABABELA,,24 A 48 HORAS
+,CAYAMBE,PRINCIPAL,24 HORAS
+,TABACUNDO,SECUNDARIO,24 HORAS
+,ASCAZUBI,ESPECIAL,48 HORAS
+,SANTA ROSA,,48 HORAS
+,MACHACHI,,48 HORAS
+,ALOAG,,48 HORAS
+,ALOAS├ì,,48 HORAS
+,CUTUGLAHUA,,48 HORAS
+,CHECA (CHILPA),,48 HORAS
+,EL QUINCHE,,48 HORAS
+,GUANGOPOLO,,24 HORAS
+,GUAYLLABAMBA,,48 HORAS
+,PIFO,,48 HORAS
+,PINTAG,,48 HORAS
+,PUEMBO,,48 HORAS
+,PUENGASI,,48 HORAS
+,YARUQUI,,48 HORAS
+,FAJARDO,,48 HORAS
+,SAN PEDRO DE TABOADA,,24 HORAS
+,NAYON,,24 HORAS
+,LA MERCED,,24 HORAS
+,ILALO,,24 HORAS
+SANTO DOMINGO,SANTO DOMINGO,PRINCIPAL,24 HORAS
+,ABRAHAM CALAZAC├ôN,,24 HORAS
+,R├ìO TOACHI,,24 HORAS
+,R├ìO VERDE,,24 HORAS
+,ZARACAY,,24 HORAS
+,EL CARMEN,SECUNDARIO,DE 24 A 48 HORAS
+,LA CONCORDIA,,DE 24 A 48 HORAS
+,LA UNION,,DE 24 A 48 HORAS
+,QUININDE,,DE 24 A 48 HORAS
+,PATRICIA PILAR,,DE 24 A 48 HORAS
+,SAN MIGUEL DE LOS BANCOS,ESPECIAL,72 HORAS
+,PEDRO VICENTE MALDONADO,,72 HORAS
+,PUERTO QUITO,,72 HORAS
+ESMERALDAS,ESMERALDAS,PRINCIPAL,24 HORAS
+,TONSUPA ,SECUNDARIO,24 HORAS
+,ATACAMES,,24 HORAS
+,MUISNE,,48 HORAS
+,PEDERNALES,,MIERCOLES - SABADO
+TUNGURAHUA,AMBATO,PRINCIPAL,24 HORAS
+,ATOCHA ÔÇô FICOA,,24 HORAS
+,CELIANO MONGE,,24 HORAS
+,HUACHI LORETO,,24 HORAS
+,LA MERCED,,24 HORAS
+,LA PEN├ìNSULA,,24 HORAS
+,MATRIZ,,24 HORAS
+,SAN FRANCISCO,,24 HORAS
+,SAN BARTOLOME DE PINLLO,,24 HORAS
+,ATAHUALPA (CHISALATA),SECUNDARIO,24 A 48 HORAS
+,AUGUSTO N. MARTINEZ (MUNDUGLEO),,24 A 48 HORAS
+,HUACHI GRANDE,,24 A 48 HORAS
+,PICAIGUA,,24 A 48 HORAS
+,SANTA ROSA,,24 A 48 HORAS
+,TOTORAS,,24 A 48 HORAS
+,PISHILATA,ESPECIAL,48 HORAS
+,HUACHI CHICO,,48 HORAS
+,CEVALLOS,,24 A 48 HORAS
+,MOCHA,,24 A 48 HORAS
+,IZAMBA,,24 A 48 HORAS
+,PATATE,,24 A 48 HORAS
+,BA├æOS DE AGUA SANTA,,24 A 48 HORAS
+,PELILEO,,24 A 48 HORAS
+,QUERO,,24 A 48 HORAS
+,PELILEO GRANDE,,24 A 48 HORAS
+,SALASACA,,24 A 48 HORAS
+,CIUDAD NUEVA,,24 A 48 HORAS
+,PILLARO,,24 A 48 HORAS
+,TISALEO,,24 A 48 HORAS
+SUCUMBIOS,LAGO AGRIO,PRINCIPAL,24 HORAS
+,SHUSHUFINDI,SECUNDARIO,24 HORAS
+,CASCALES,ESPECIAL,24 A 48 HORAS
+,LUMBAQUI,,24 A 48 HORAS
+,EL ENO,,24 A 48 HORAS
+,PROYECTO,,24 A 48 HORAS
+FRANCISCO DE ORELLANA,EL COCA,PRINCIPAL,24 HORAS
+,JOYA DE LOS SACHAS,SECUNDARIO,24 HORAS
+,DAYUMA,ESPECIAL,24 A 48 HORAS
+,LORETO,,24 A 48 HORAS
+NAPO,TENA,PRINCIPAL,MARTES - JUEVES
+,BAEZA,SECUNDARIO,MARTES - JUEVES
+,EL CHACO,ESPECIAL,MARTES - JUEVES
+,ARCHIDONA,,MARTES - JUEVES
+PASTAZA,PUYO,PRINCIPAL,MARTES - JUEVES
+,SANTA CLARA,SECUNDARIO,MARTES - JUEVES
+,SHELL,,MARTES - JUEVES
+,MERA,,MARTES - JUEVES
+"* Tiempo de entrega estimados, considerados con recepci├│n en la ciudad de tr├ínsito con m├¡nimo 24 horas, en condiciones ├│ptimas de traslado y entrega de env├¡os.
+- Trayectos fuera de listado se consideran sin cobertura, por lo que aplica tarifas adicionales, las cuales ser├ín previamente comunicadas y aceptadas por el cliente, los tiempos de entrega depender├ín de los accesos a cada uno de lo strayectos.
+- TRAYECTOS ESPECIALES .-  Tiempos de entrega detallados considerados con salidas SOLO los d├¡as especificios,  se requiere el env├¡o debe ser retirado con  48 horas de anticipaci├│n
+- COORDINACI├ôN PREVIA aplica tarifas adicionales y los tiempos depender├ín de la accesibilidad de destino
+- Entregas de Trayectos especiales deben ser entregados por el cliente al menos con 48 horas de anticipaci├│n
+- Entregas con horario en centros comerciales (solo para ciudades principales) o cadenas deben ser notificadas por correo electr├│nico con 24 horas de anticipaci├│n al d├¡a de entrega. Estas entregas se realizar├ín a partir de las 8:30 am de acuerdo a la ciudad de destino (se confirmar├í por correo electr├│nico)",,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+
+=== DOCX DATA ===
+
+
+ENVIOSXPRESS
+
+Gu├¡a de Implementaci├│n
+
+Tarifas  ┬À  Reglas de Negocio  ┬À  Captura de Leads  ┬À  Protocolo CRM
+
+
+
+Bot WhatsApp 24/7  ┬À  Cotizador Web  ┬À  Google Antigravity  ┬À  Supabase
+
+Versi├│n 3.1  ÔÇö  2025
+
+Contenido del Documento
+
+1.   Principio Base de Tarificaci├│n
+
+2.   Tarifas Nacionales ÔÇö todas las zonas
+
+3.   Tarifas Regi├│n Oriente
+
+4.   Descuento 30 % ÔÇö Zona Norte (Tabacundo, Cayambe, Otavalo, Cotacachi, Atuntaqui, Ibarra, Tulc├ín)
+
+5.   Plan Emprendedor
+
+6.   Plan Empresarial ÔÇö Alto Volumen
+
+7.   Flujo del Bot WhatsApp 24/7
+
+8.   Cotizador Web ÔÇö Campos y L├│gica
+
+9.   Reglas de Negocio ÔÇö Google Antigravity / Firestore
+
+10.  Notas de Implementaci├│n
+
+11.  Estructura de Leads en Supabase
+
+12.  Flujo de Captura de Datos del Cliente (Bot)
+
+13.  Protocolo CRM ÔÇö Tratamiento de Clientes Potenciales
+
+
+
+1.  Principio Base de Tarificaci├│n
+
+REGLA FUNDAMENTAL
+
+ENVIOSXPRESS opera con TARIFA PLANA por paquete. No se cobra por peso ni por dimensiones.
+
+
+
+El precio de cualquier env├¡o depende ├║nicamente de tres variables:
+
+La zona o ruta del env├¡o: Nacional, Oriente, o Zona Norte (con descuento autom├ítico del 30 %).
+
+El tipo de env├¡o: Documento (sobres) o Carga (paquetes ÔÇö primeros 5 kg incluidos en tarifa base).
+
+El seguro de valor declarado: 1 % del valor declarado por el cliente (opcional).
+
+
+
+Para env├¡os de Carga que superen los 5 kg, se suma un cargo por kilo adicional a partir del 6.┬░ kilo. Este es el ├║nico ajuste num├®rico permitido sobre la tarifa base.
+
+
+
+2.  Tarifas Nacionales
+
+CATEGOR├ìA
+
+DESCRIPCI├ôN
+
+TARIFA BASE
+
+Ciudad ÔÇö Ciudad  (Ruta Nacional Est├índar)
+
+Documentos
+
+Sobres, cartas, contratos ÔÇö sin cobro por peso
+
+$ 3,00
+
+Carga
+
+Paquetes ÔÇö primeros 5 kg incluidos en tarifa base
+
+$ 3,00
+
+Carga ÔÇö kilo adicional
+
+A partir del 6.┬░ kilo (solo aplica a Carga)
+
+$ 0,25 / kg
+
+Ciudades Principales
+
+Documentos
+
+Sobres a ciudades principales del pa├¡s
+
+$ 3,50
+
+Carga
+
+Paquetes ÔÇö primeros 5 kg incluidos en tarifa base
+
+$ 3,50
+
+Carga ÔÇö kilo adicional
+
+A partir del 6.┬░ kilo
+
+$ 0,35 / kg
+
+Ciudades Secundarias
+
+Documentos
+
+Sobres a ciudades secundarias e intermedias
+
+$ 4,00
+
+Carga
+
+Paquetes ÔÇö primeros 5 kg incluidos en tarifa base
+
+$ 4,00
+
+Carga ÔÇö kilo adicional
+
+A partir del 6.┬░ kilo
+
+$ 0,45 / kg
+
+Trayectos Especiales
+
+Documentos
+
+Sobres a zonas de dif├¡cil acceso o trayecto extendido
+
+$ 5,00
+
+Carga
+
+Paquetes ÔÇö primeros 5 kg incluidos en tarifa base
+
+$ 5,00
+
+Carga ÔÇö kilo adicional
+
+A partir del 6.┬░ kilo
+
+$ 0,50 / kg
+
+Seguro de Valor Declarado
+
+1,00 % del valor declarado
+
+
+
+Las tarifas nacionales cubren todos los env├¡os dentro del Ecuador continental, excluyendo la regi├│n amaz├│nica (Oriente). La clasificaci├│n exacta de ciudades (Principal, Secundaria, Trayecto Especial) est├í definida en el cat├ílogo de cobertura de ENVIOSXPRESS.
+
+
+
+3.  Tarifas Regi├│n Oriente
+
+Provincias con tarifa Oriente:
+
+Napo  ┬À  Orellana  ┬À  Sucumb├¡os  ┬À  Pastaza  ┬À  Morona Santiago  ┬À  Zamora Chinchipe
+
+Estas tarifas reflejan la complejidad log├¡stica y los costos de acceso a la regi├│n amaz├│nica. Los tiempos de entrega pueden variar seg├║n la conectividad vial disponible.
+
+
+
+CATEGOR├ìA
+
+DESCRIPCI├ôN
+
+TARIFA BASE
+
+Ciudades Principales ÔÇö Oriente
+
+Documentos
+
+Sobres a capitales provinciales amaz├│nicas
+
+$ 5,00
+
+Carga
+
+Paquetes ÔÇö primeros 5 kg incluidos
+
+$ 5,00
+
+Carga ÔÇö kilo adicional
+
+A partir del 6.┬░ kilo
+
+$ 0,45 / kg
+
+Ciudades Secundarias ÔÇö Oriente
+
+Documentos
+
+Sobres a cantones y parroquias secundarias
+
+$ 6,00
+
+Carga
+
+Paquetes ÔÇö primeros 5 kg incluidos
+
+$ 6,00
+
+Carga ÔÇö kilo adicional
+
+A partir del 6.┬░ kilo
+
+$ 0,50 / kg
+
+Trayectos Especiales ÔÇö Oriente
+
+Documentos
+
+Sobres a zonas remotas / acceso fluvial o a├®reo
+
+$ 7,00
+
+Carga
+
+Paquetes ÔÇö primeros 5 kg incluidos
+
+$ 7,00
+
+Carga ÔÇö kilo adicional
+
+A partir del 6.┬░ kilo
+
+$ 0,75 / kg
+
+
+
+4.  Descuento 30 % ÔÇö Zona Norte
+
+El descuento se aplica autom├íticamente cuando el origen o destino es una ciudad de la Zona Norte. No requiere c├│digo promocional ni solicitud del cliente.
+
+Ciudades incluidas: Tabacundo ┬À Cayambe ┬À Otavalo ┬À Cotacachi ┬À Atuntaqui ┬À Ibarra ┬À Tulc├ín
+
+CATEGOR├ìA / RUTA
+
+TARIFA NORMAL
+
+DESCUENTO
+
+TARIFA FINAL
+
+Ciudad ÔÇö Ciudad
+
+$ 3,00
+
+30 %
+
+$ 2,10
+
+Ciudades Principales
+
+$ 3,50
+
+30 %
+
+$ 2,45
+
+Ciudades Secundarias
+
+$ 4,00
+
+30 %
+
+$ 2,80
+
+Trayectos Especiales
+
+$ 5,00
+
+30 %
+
+$ 3,50
+
+
+
+5.  Plan Emprendedor
+
+BENEFICIO
+
+CONDICIONES Y DETALLES
+
+15 % de descuento en todas las tarifas nacionales
+
+M├¡nimo 10 env├¡os por mes. Se activa tras verificaci├│n del equipo comercial.
+
+Retiro a domicilio sin costo
+
+Disponible en ciudades con cobertura de recolecci├│n activa de ENVIOSXPRESS.
+
+Gu├¡as prepagadas con tarifa congelada 30 d├¡as
+
+Compra m├¡nima de 20 gu├¡as anticipadas. Ideal para temporadas altas.
+
+Soporte prioritario por WhatsApp (horario h├íbil)
+
+Tiempo de respuesta garantizado: m├íximo 2 horas en d├¡as h├íbiles.
+
+Panel de seguimiento de env├¡os en tiempo real
+
+Acceso al portal de cliente con historial, estados y reportes.
+
+
+
+C├│mo activar el Plan Emprendedor:
+
+1. El cliente escribe al bot y selecciona '­ƒÜÇ Soy emprendedor / Quiero mi plan'.
+
+2. Completa el registro: nombre, ciudad, tipo de negocio.
+
+3. El equipo comercial verifica el perfil y habilita el flag en Firestore.
+
+4. El descuento del 15 % queda activo en 24 horas h├íbiles y se aplica autom├íticamente en todas las cotizaciones.
+
+
+
+6.  Plan Empresarial ÔÇö Alto Volumen
+
+6.1  Descuentos por Volumen
+
+VOLUMEN MENSUAL
+
+DESCUENTO APLICADO
+
+50 ÔÇö 150 env├¡os/mes
+
+10 %
+
+151 ÔÇö 400 env├¡os/mes
+
+15 %
+
+401 ÔÇö 800 env├¡os/mes
+
+22 %
+
+801 + env├¡os/mes
+
+30 %  (tarifa negociada con el ├írea comercial)
+
+
+
+6.2  Beneficios Incluidos
+
+BENEFICIO INCLUIDO
+
+DESCRIPCI├ôN
+
+Gerente de cuenta dedicado
+
+Contacto directo v├¡a WhatsApp y tel├®fono. SLA garantizado por contrato.
+
+Facturaci├│n mensual consolidada
+
+Una sola factura al mes con detalle de todos los env├¡os realizados.
+
+Reportes de trazabilidad
+
+Panel empresarial con m├®tricas, estados y exportaci├│n a Excel/PDF.
+
+Retiro programado en instalaciones
+
+Retiros diarios o agendados seg├║n el volumen de despachos pactado.
+
+Soporte 24/7 l├¡nea empresarial exclusiva
+
+Canal diferenciado del flujo de clientes regulares.
+
+Contratos mensuales o anuales
+
+Descuento adicional del 3 % en contratos anuales.
+
+
+
+IMPORTANTE: El Plan Empresarial NO incluye integraci├│n API.
+
+La gesti├│n de env├¡os se realiza exclusivamente a trav├®s del portal web de ENVIOSXPRESS y el canal de WhatsApp designado por el cliente.
+
+
+
+7.  Flujo del Bot WhatsApp 24/7
+
+#
+
+ACCI├ôN
+
+DETALLE DEL PASO
+
+1
+
+Saludo autom├ítico
+
+El bot responde de inmediato con saludo y men├║: (1) Cotizar env├¡o  (2) Rastrear paquete  (3) Conocer planes  (4) Hablar con un agente.
+
+2
+
+Ruta del env├¡o
+
+Solicita ciudad de origen y destino en un solo mensaje. No se pide peso ni dimensiones. El sistema detecta la zona autom├íticamente (Nacional / Oriente / Norte).
+
+3
+
+Tipo de env├¡o
+
+┬┐Documento o Carga? Si es Carga, pregunta si el peso supera los 5 kg para calcular kilos adicionales.
+
+4
+
+Descuentos autom├íticos
+
+El sistema eval├║a: Zona Norte (30 %) y plan activo del cliente. Aplica el descuento correspondiente. No son acumulables. El descuento aparece detallado en el resumen.
+
+5
+
+Seguro (opcional)
+
+┬┐Desea asegurar el env├¡o? Si el cliente indica el valor declarado, se suma el 1 % autom├íticamente. Si escribe NO, se omite sin insistir.
+
+6
+
+Cotizaci├│n final
+
+Desglose: Tarifa base + Descuento aplicado + Seguro = TOTAL. Opciones: Confirmar / Modificar datos / Volver al men├║.
+
+
+
+Reglas de operaci├│n del bot:
+
+ÔÇó La cotizaci├│n completa debe resolverse en m├íximo 3 turnos de conversaci├│n.
+
+ÔÇó El bot no debe solicitar informaci├│n innecesaria (sin peso, sin dimensiones, sin RUC para cotizar).
+
+ÔÇó Sin respuesta del cliente en 10 minutos ÔåÆ enviar recordatorio amigable.
+
+ÔÇó Sin respuesta en 30 minutos ÔåÆ cerrar sesi├│n y registrar estado como inactivo en Supabase.
+
+
+
+8.  Cotizador Web ÔÇö Campos y L├│gica
+
+CAMPO
+
+DESCRIPCI├ôN FUNCIONAL
+
+TIPO
+
+Ciudad de Origen
+
+Selector con autocompletado. Al seleccionar, el sistema detecta la zona autom├íticamente.
+
+Requerido
+
+Ciudad de Destino
+
+Detecta zona (Nacional / Oriente / Norte) y aplica la tarifa correspondiente.
+
+Requerido
+
+Tipo de Env├¡o
+
+Selector: Documento o Carga. Determina la tarifa base.
+
+Requerido
+
+Peso (kg)
+
+Solo visible si se selecciona Carga. Si supera 5 kg, calcula kilos adicionales autom├íticamente.
+
+Condicional
+
+Valor Declarado
+
+Opcional. Si se ingresa un valor, se muestra el c├ílculo del seguro (1 %) en tiempo real.
+
+Opcional
+
+C├│digo Promocional
+
+Para clientes con plan activo. Valida en tiempo real contra Firestore.
+
+Opcional
+
+Resultado / Total
+
+Desglose en tiempo real: tarifa base + descuentos + seguro = TOTAL. Sin recargar la p├ígina.
+
+Output
+
+
+
+El cotizador web debe implementarse como widget embebible. Consume la misma l├│gica de Firestore que el bot para garantizar precios consistentes en todos los canales. Cualquier actualizaci├│n de tarifas en Firestore se refleja autom├íticamente sin modificar el c├│digo.
+
+
+
+9.  Reglas de Negocio ÔÇö Google Antigravity / Firestore
+
+ID
+
+NOMBRE DE LA REGLA
+
+L├ôGICA DE IMPLEMENTACI├ôN
+
+RN-01
+
+Tarifa plana por paquete
+
+No se cobra por peso ni dimensiones. La tarifa depende ├║nicamente de: (1) zona/ruta, (2) tipo de env├¡o Documento o Carga, (3) seguro opcional.
+
+RN-02
+
+Clasificaci├│n de zonas
+
+NACIONAL: Ecuador continental, excepto provincias de Oriente.
+
+ORIENTE: Napo, Orellana, Sucumb├¡os, Pastaza, Morona Santiago, Zamora Chinchipe.
+
+NORTE: Tabacundo, Cayambe, Otavalo, Cotacachi, Atuntaqui, Ibarra, Tulc├ín.
+
+RN-03
+
+Descuento Zona Norte (30 %)
+
+Si origen O destino pertenece a /zonas/norte ÔåÆ tarifa_base ├ù 0.70. Se aplica autom├íticamente sin c├│digo. No acumulable con Plan Empresarial.
+
+RN-04
+
+Seguro de valor declarado
+
+Si cliente declara un valor ÔåÆ seguro = valor_declarado ├ù 0.01. Validar que no supere max_valor de /config/seguro. Suma al total, no reemplaza tarifa.
+
+RN-05
+
+Plan Emprendedor
+
+/clientes/{uid}/plan == 'emprendedor' AND vigente ÔåÆ tarifa ├ù 0.85. Aplicar despu├®s del descuento norte si ya se aplic├│.
+
+RN-06
+
+Plan Empresarial
+
+/clientes/{uid}/plan == 'empresarial' ÔåÆ tramos: 50ÔÇô150=10%, 151ÔÇô400=15%, 401ÔÇô800=22%, 801+=30%. SIN integraci├│n API.
+
+RN-07
+
+Prioridad de descuentos
+
+Orden: (1) Descuento zona norte, (2) Descuento plan cliente. NO acumulables por defecto. Flag acumulable configurable en /config/descuentos.
+
+RN-08
+
+Kilos adicionales
+
+Solo Carga. Primeros 5 kg incluidos. A partir del 6.┬░ kilo ÔåÆ sumar (kilos_extra ├ù tarifa_kilo_adicional). Para Documentos no aplica nunca.
+
+
+
+Estructura de Firestore recomendada:
+
+/config/tarifas          ÔåÆ  Objeto con todas las tarifas por zona y tipo
+
+/config/promociones      ÔåÆ  Descuentos activos, condiciones y fechas de vigencia
+
+/config/seguro           ÔåÆ  max_valor asegurable y porcentaje (actualmente 1 %)
+
+/config/descuentos       ÔåÆ  Flag acumulable (bool) y prioridad de aplicaci├│n
+
+/clientes/{uid}/plan     ÔåÆ  Plan activo del cliente: emprendedor / empresarial / null
+
+/zonas/norte             ÔåÆ  Lista de ciudades Zona Norte con descuento 30 %
+
+/zonas/oriente           ÔåÆ  Lista de provincias con tarifa Oriente
+
+
+
+10.  Notas de Implementaci├│n
+
+Ning├║n precio debe estar hardcodeado en el c├│digo del bot o del cotizador. Todas las tarifas se leen desde Firestore.
+
+Los descuentos de Zona Norte (30 %) y los de plan cliente no son acumulables por defecto. Configurable en /config/descuentos.
+
+El seguro del 1 % aplica sobre el valor declarado por el cliente, no sobre el costo del env├¡o.
+
+La activaci├│n de cualquier plan requiere verificaci├│n manual del equipo comercial antes de habilitar el flag en Firestore.
+
+El Plan Empresarial no incluye integraci├│n API. Gesti├│n por portal web y WhatsApp designado.
+
+Antes del deploy en producci├│n: confirmar con el ├írea comercial el valor m├íximo asegurable y la clasificaci├│n exacta de cada ciudad.
+
+
+
+11.  Estructura de Leads en Supabase
+
+11.1  Tabla: leads
+
+CAMPO
+
+TIPO
+
+DESCRIPCI├ôN Y USO
+
+ORIGEN
+
+id
+
+UUID
+
+Identificador ├║nico generado autom├íticamente por Supabase.
+
+Auto
+
+whatsapp_number
+
+TEXT (PK)
+
+N├║mero con c├│digo de pa├¡s. Identificador ├║nico del cliente. Si ya existe, se actualiza el registro (upsert).
+
+Bot ÔÇö Auto
+
+nombre
+
+TEXT
+
+Nombre o alias capturado en el primer mensaje de forma natural.
+
+Bot ÔÇö Paso 1
+
+tipo_cliente
+
+ENUM
+
+Valores: 'particular' / 'emprendedor' / 'empresa'. Detectado por contexto o pregunta sutil.
+
+Bot ÔÇö Inferido
+
+ciudad_origen_frecuente
+
+TEXT
+
+Ciudad m├ís usada como origen. Inferida despu├®s de 3 cotizaciones desde la misma ciudad.
+
+Inferido
+
+ciudad_destino_frecuente
+
+TEXT
+
+Ciudad destino m├ís cotizada. ├Ütil para segmentaci├│n y campa├▒as.
+
+Inferido
+
+frecuencia_estimada
+
+TEXT
+
+Env├¡os aprox. al mes. Solo se pregunta si tipo_cliente = emprendedor o empresa.
+
+Bot ÔÇö Condicional
+
+plan_interes
+
+TEXT
+
+Plan al que califica o por el que pregunt├│: 'emprendedor' / 'empresarial' / null.
+
+Bot ÔÇö Detecci├│n
+
+cotizaciones_count
+
+INT
+
+Contador autom├ítico. Se incrementa en cada cotizaci├│n realizada.
+
+Auto
+
+ultimo_contacto
+
+TIMESTAMP
+
+Fecha y hora de la ├║ltima interacci├│n con el bot o un agente.
+
+Auto
+
+estado_lead
+
+ENUM
+
+'nuevo' / 'activo' / 'calificado' / 'en_seguimiento' / 'convertido' / 'inactivo'.
+
+CRM
+
+agente_asignado
+
+TEXT
+
+Agente comercial responsable del lead. NULL si a├║n no asignado.
+
+CRM
+
+canal_origen
+
+TEXT
+
+'whatsapp_organico' / 'cotizador_web' / 'referido' / 'campana'.
+
+Auto
+
+notas
+
+TEXT
+
+Campo libre para observaciones del agente o datos capturados por el bot.
+
+CRM / Bot
+
+created_at
+
+TIMESTAMP
+
+Fecha del primer contacto. Inmutable.
+
+Auto
+
+
+
+11.2  Tabla: cotizaciones
+
+CAMPO
+
+TIPO
+
+DESCRIPCI├ôN
+
+id
+
+UUID
+
+Identificador ├║nico de la cotizaci├│n.
+
+lead_id
+
+UUID (FK)
+
+Referencia al registro en la tabla leads.
+
+origen
+
+TEXT
+
+Ciudad de origen del env├¡o cotizado.
+
+destino
+
+TEXT
+
+Ciudad de destino del env├¡o cotizado.
+
+tipo_envio
+
+TEXT
+
+Documento o Carga.
+
+zona
+
+TEXT
+
+Nacional / Oriente / Norte (detectada autom├íticamente).
+
+tarifa_base
+
+DECIMAL
+
+Tarifa base antes de aplicar descuentos.
+
+descuento_aplicado
+
+DECIMAL
+
+Importe del descuento aplicado (0 si ninguno).
+
+seguro
+
+DECIMAL
+
+Importe del seguro (0 si no se contrat├│).
+
+total
+
+DECIMAL
+
+Total final presentado al cliente.
+
+confirmado
+
+BOOLEAN
+
+true si el cliente confirm├│ el env├¡o, false si solo cotiz├│. Clave para m├®tricas de conversi├│n.
+
+created_at
+
+TIMESTAMP
+
+Fecha y hora de la cotizaci├│n.
+
+
+
+L├│gica de upsert:
+
+Cada vez que un n├║mero de WhatsApp inicia una conversaci├│n, el sistema verifica si ya existe en la tabla leads.
+
+ÔÇó Si NO existe ÔåÆ crea un registro nuevo con estado 'nuevo' y created_at = timestamp actual.
+
+ÔÇó Si YA existe ÔåÆ actualiza ultimo_contacto e incrementa cotizaciones_count. Los dem├ís datos se preservan.
+
+Cada cotizaci├│n (confirmada o no) se guarda en la tabla cotizaciones con confirmado = true/false. Clave para medir la tasa de conversi├│n.
+
+
+
+12.  Flujo de Captura de Datos del Cliente (Bot)
+
+#
+
+DATO
+
+PREGUNTA DEL BOT
+
+REGLA DE CAPTURA
+
+CAMPO DB
+
+1
+
+Nombre
+
+┬┐Con qui├®n tengo el gusto?
+
+Primer mensaje. Si no responde, el bot usa 'Cliente' y contin├║a. Se guarda en Supabase al instante.
+
+nombre
+
+2
+
+N.┬░ WhatsApp
+
+Capturado autom├íticamente
+
+No se solicita nunca. Es el PK del lead desde el primer mensaje. El sistema hace upsert: crea o actualiza el registro.
+
+whatsapp_number
+
+3
+
+Tipo de cliente
+
+┬┐Env├¡as para uso personal o para tu negocio?
+
+Solo al terminar la primera cotizaci├│n. Si antes mencion├│ 'tienda', 'empresa' o 'emprendimiento', se infiere y no se pregunta.
+
+tipo_cliente
+
+4
+
+Frecuencia de env├¡os
+
+┬┐Cu├íntos env├¡os aproximados realizas al mes?
+
+Solo si tipo_cliente = emprendedor o empresa. Califica autom├íticamente para Plan Emprendedor (ÔëÑ10/mes) o Empresarial (ÔëÑ50/mes).
+
+frecuencia_estimada
+
+5
+
+Inter├®s en plan
+
+Con ese volumen tienes acceso a tarifas especiales. ┬┐Te cuento m├ís?
+
+Solo si frecuencia ÔëÑ 10/mes. Si el cliente dice NO, el bot lo respeta sin insistir y cierra normalmente.
+
+plan_interes
+
+6
+
+Ciudad habitual
+
+Veo que sueles enviar desde [ciudad]. ┬┐Lo guardamos?
+
+Inferida del historial. Despu├®s de 3 cotizaciones desde la misma ciudad, el bot ofrece guardarla.
+
+ciudad_origen
+
+
+
+Principio de captura progresiva:
+
+El bot nunca pide m├ís de un dato por mensaje. Cada pregunta es natural y conversacional.
+
+Si el cliente menciona voluntariamente informaci├│n antes de que se le pregunte, el bot captura ese dato y omite la pregunta correspondiente en el flujo.
+
+Nunca se pregunta algo que el cliente ya haya dicho.
+
+
+
+13.  Protocolo CRM ÔÇö Tratamiento de Clientes Potenciales
+
+13.1  Estados del Lead
+
+ESTADO
+
+CONDICI├ôN DE ENTRADA
+
+ACCI├ôN DEL SISTEMA / BOT
+
+NUEVO
+
+Primer contacto. A├║n no ha cotizado.
+
+El bot responde de inmediato. Saluda con nombre si fue capturado. Presenta el men├║ completo. Registra el lead en Supabase con estado 'nuevo'.
+
+ACTIVO
+
+Ha realizado al menos una cotizaci├│n.
+
+Supabase incrementa cotizaciones_count. El bot personaliza el saludo. Si tiene 3 o m├ís cotizaciones sin confirmar y califica por volumen, activa oferta de plan.
+
+CALIFICADO
+
+Frecuencia ÔëÑ 10 env├¡os/mes o consult├│ por un plan.
+
+El bot presenta la oferta del plan correspondiente (Emprendedor o Empresarial). Genera notificaci├│n autom├ítica al agente comercial para seguimiento humano.
+
+EN SEGUIMIENTO
+
+Recibi├│ oferta de plan pero no ha confirmado.
+
+Seguimiento autom├ítico: mensaje a las 24 h y otro a las 72 h. Tono amable y no invasivo. M├íximo 2 mensajes de seguimiento por ciclo.
+
+CONVERTIDO
+
+Activ├│ un plan o confirm├│ un env├¡o.
+
+Plan actualizado en Firestore. Si es Empresarial, se asigna gerente de cuenta. El bot trata al cliente con su nombre y su plan activo en cada interacci├│n.
+
+INACTIVO
+
+Sin respuesta por 7 d├¡as.
+
+Pasa a lista de campa├▒a mensual. El bot NO contacta de forma aut├│noma. El agente eval├║a si conviene un contacto manual antes de la siguiente campa├▒a.
+
+
+
+13.2  Mensajes Predefinidos del Bot
+
+SITUACI├ôN
+
+MENSAJE SUGERIDO DEL BOT
+
+Seguimiento a las 24 h
+
+┬íHola [nombre]! ­ƒæï Vi que cotizaste un env├¡o de [origen] a [destino]. ┬┐Puedo ayudarte a completarlo o tienes alguna duda?
+
+Seguimiento a las 72 h
+
+┬íHola [nombre]! Solo quiero asegurarme de que tu env├¡o quede listo. Si cambi├│ algo o necesitas una nueva cotizaci├│n, aqu├¡ estoy. ­ƒôª
+
+Oferta de plan (calificado)
+
+Con el volumen que manejas, tienes acceso a tarifas preferenciales en ENVIOSXPRESS. ┬┐Te cuento en qu├® consiste? Solo toma 2 minutos. ­ƒÜÇ
+
+Reactivaci├│n mensual
+
+┬íHola [nombre]! ­ƒæï Hace un tiempo cotizaste con nosotros. Seguimos disponibles 24/7 con las mejores tarifas. ┬┐Hacemos un env├¡o hoy?
+
+Bienvenida Plan Emprendedor
+
+┬íFelicitaciones [nombre]! Tu Plan Emprendedor ya est├í activo ­ƒÄë Desde ahora tienes 15 % de descuento en todos tus env├¡os. ┬┐Empezamos?
+
+Asignaci├│n gerente (Empresarial)
+
+┬íHola [nombre]! Tu perfil empresarial fue verificado. En las pr├│ximas horas te contactar├í tu gerente de cuenta por WhatsApp. ┬íGracias por confiar en ENVIOSXPRESS!
+
+Cliente rechaza oferta de plan
+
+Entendido, [nombre]. Sin ning├║n problema. Si en alg├║n momento quieres conocerlo, aqu├¡ estar├®. ┬┐Hay algo m├ís en lo que pueda ayudarte hoy?
+
+Error / dato no reconocido
+
+Disculpa, no pude procesar ese dato. ┬┐Me confirmas la ciudad de destino? Puedes escribir el nombre y te cotizo de inmediato. ­ƒÖÅ
+
+
+
+Reglas de oro del seguimiento:
+
+ÔÇó Todo lead que cotice sin confirmar recibe seguimiento a las 24 h y 72 h (m├íximo 2 mensajes por ciclo).
+
+ÔÇó Despu├®s de 7 d├¡as sin respuesta ÔåÆ estado 'Inactivo'. Pasa a campa├▒a mensual.
+
+ÔÇó Nunca m├ís de 3 contactos en 7 d├¡as sin una respuesta del cliente.
+
+ÔÇó Un lead 'Calificado' siempre genera notificaci├│n al agente comercial para seguimiento humano.
+
+Un bot invasivo da├▒a la marca. El respeto al tiempo del cliente es parte del posicionamiento profesional de ENVIOSXPRESS.
+
+
+
+Documento preparado para implementaci├│n en Google Antigravity + Supabase  ÔÇö  ENVIOSXPRESS 2025  ÔÇö  Versi├│n 3.1
+
+
