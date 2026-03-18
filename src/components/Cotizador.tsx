@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
-import { Calculator, Check, MessageSquare, Package, FileText, Shield, Loader2, Zap, ChevronDown } from 'lucide-react'
+import { Calculator, Check, MessageSquare, Package, FileText, Shield, Loader2, Zap, ChevronDown, MapPin, Clock } from 'lucide-react'
 import { supabase, getQuote, type QuoteResponse } from '../lib/supabase'
 
 type TipoEnvio = 'documento' | 'carga'
@@ -158,12 +158,15 @@ export default function Cotizador() {
             </div>
           </div>
 
-          <div className="bg-black text-white p-8 lg:p-12 animate-in animate-delay-2 shadow-2xl relative overflow-hidden rounded-[2rem]">
-            <div className="absolute -top-32 -right-32 w-64 h-64 bg-brand/30 rounded-full blur-3xl pointer-events-none" />
+          <div className="bg-[#0a0a0a]/90 backdrop-blur-2xl text-white p-8 lg:p-12 animate-in animate-delay-2 shadow-[0_20px_60px_rgba(0,0,0,0.8)] relative overflow-hidden rounded-[2rem] border border-white/10 group">
+            {/* Metallic ambient light */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/50 opacity-0 group-hover:opacity-100 transition duration-1000 pointer-events-none" />
+            <div className="absolute -top-32 -right-32 w-80 h-80 bg-brand/30 rounded-full blur-[100px] pointer-events-none group-hover:bg-brand/40 transition-colors" />
+            <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-[#ff4d6d]/10 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="flex items-center gap-3 mb-8 pb-5 border-b border-white/10 relative z-10">
-              <Calculator className="text-brand" size={24} aria-hidden="true" />
-              <h3 className="text-xs font-black uppercase tracking-widest text-white">Tarifa en Tiempo Real</h3>
+              <Calculator className="text-brand group-hover:scale-110 transition-transform duration-500" size={24} aria-hidden="true" />
+              <h3 className="text-xs font-black uppercase tracking-[0.2em] text-white">Tarifa en Tiempo Real</h3>
             </div>
 
             {loading ? (
@@ -173,20 +176,20 @@ export default function Cotizador() {
               </div>
             ) : !showResult ? (
               <form onSubmit={(e) => { e.preventDefault(); handleQuote() }} className="space-y-6 relative z-10">
-                <div className="flex gap-4 mb-2">
+                <div className="flex gap-4 mb-4 relative z-10 p-1 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
                   <button
                     type="button"
                     onClick={() => setTipo('documento')}
-                    className={`flex-1 py-4 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest border transition-all duration-200 cursor-pointer ${tipo === 'documento' ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.2)]' : 'bg-transparent text-white border-white/20 hover:border-white/50'}`}
+                    className={`flex-1 py-4 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 rounded-xl cursor-pointer ${tipo === 'documento' ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.4)] scale-[1.02]' : 'bg-transparent text-gray-400 hover:text-white hover:bg-white/5'}`}
                   >
-                    <FileText size={14} /> Documento
+                    <FileText size={16} className={tipo === 'documento' ? 'text-brand' : ''} /> Documento
                   </button>
                   <button
                     type="button"
                     onClick={() => setTipo('carga')}
-                    className={`flex-1 py-4 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest border transition-all duration-200 cursor-pointer ${tipo === 'carga' ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.2)]' : 'bg-transparent text-white border-white/20 hover:border-white/50'}`}
+                    className={`flex-1 py-4 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 rounded-xl cursor-pointer ${tipo === 'carga' ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.4)] scale-[1.02]' : 'bg-transparent text-gray-400 hover:text-white hover:bg-white/5'}`}
                   >
-                    <Package size={14} /> Carga
+                    <Package size={16} className={tipo === 'carga' ? 'text-brand' : ''} /> Paquete
                   </button>
                 </div>
 
@@ -316,71 +319,67 @@ export default function Cotizador() {
                 </button>
               </form>
             ) : quoteResult?.quote ? (
-              <div className="relative z-10 animate-in is-revealed">
+              <div className="relative z-10 animate-in is-revealed space-y-6">
                 <div className="text-center">
                   <div className="text-brand font-black text-[10px] uppercase tracking-[0.3em] px-4 py-2 border border-brand/40 bg-brand/10 inline-block mb-6 rounded-full shadow-[0_0_15px_rgba(114,47,55,0.3)]">
                     Cotización Oficial
                   </div>
                   <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Total a Pagar</div>
-                  <div className="text-6xl md:text-7xl font-black text-white mb-6 tracking-tighter italic tabular-nums text-metallic-brand">
+                  <div className="text-6xl md:text-7xl font-black text-white mb-6 tracking-tighter italic tabular-nums text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
                     ${quoteResult.quote.precio_total.toFixed(2)}
                   </div>
 
-                  <div className="space-y-2 mb-8 bg-white/5 p-4 rounded-xl border border-white/10 text-left">
-                    <div className="flex justify-between text-xs text-gray-300">
-                      <span>Origen:</span>
-                      <span className="font-bold text-white">{quoteResult.quote.origen}</span>
+                  <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-left space-y-3 mb-8 shadow-inner">
+                    <div className="flex justify-between items-center text-xs text-gray-300">
+                      <span className="flex items-center gap-1"><MapPin size={12}/> Origen:</span>
+                      <span className="font-bold text-white uppercase tracking-wider">{quoteResult.quote.origen}</span>
                     </div>
-                    <div className="flex justify-between text-xs text-gray-300">
-                      <span>Destino:</span>
-                      <span className="font-bold text-white">{quoteResult.quote.destino}</span>
+                    <div className="flex justify-between items-center text-xs text-gray-300">
+                      <span className="flex items-center gap-1"><MapPin size={12} className="text-[#25D366]"/> Destino:</span>
+                      <span className="font-bold text-white uppercase tracking-wider">{quoteResult.quote.destino}</span>
                     </div>
-                    <div className="flex justify-between text-xs text-gray-300">
-                      <span>Zona:</span>
-                      <span className="font-bold text-white capitalize">{quoteResult.quote.zone_name}</span>
+                    <div className="flex justify-between items-center text-xs text-gray-300">
+                      <span className="flex items-center gap-1"><Package size={12} className="text-brand"/> Zona:</span>
+                      <span className="font-bold text-white uppercase tracking-wider">{quoteResult.quote.zone_name}</span>
                     </div>
-                    <div className="pt-2 mt-2 border-t border-white/10 flex justify-between text-xs font-bold text-gray-400 uppercase tracking-widest">
-                      <span>Tiempo Estimado:</span>
-                      <span className="text-white">{quoteResult.quote.tiempo_entrega}</span>
+                    <div className="pt-3 mt-3 border-t border-white/10 flex justify-between items-center text-xs font-bold text-gray-400 uppercase tracking-widest">
+                      <span className="flex items-center gap-1"><Clock size={12}/> Tiempo Est.:</span>
+                      <span className="text-brand tabular-nums">{quoteResult.quote.tiempo_entrega}</span>
                     </div>
 
                     {quoteResult.quote.tarifa_base > 0 && (
-                      <>
-                        <div className="pt-2 mt-2 border-t border-white/10 flex justify-between text-xs text-gray-300">
-                          <span>Tarifa Base (5kg):</span>
+                      <div className="pt-3 mt-3 border-t border-white/10 space-y-2">
+                        <div className="flex justify-between text-[11px] text-gray-300">
+                          <span className="uppercase tracking-widest">Tarifa Base (5kg):</span>
                           <span className="font-bold text-white">${quoteResult.quote.tarifa_base.toFixed(2)}</span>
                         </div>
                         {quoteResult.quote.recargo_peso > 0 && (
-                          <div className="flex justify-between text-xs text-brand">
-                            <span>Exceso de Peso:</span>
+                          <div className="flex justify-between text-[11px] text-brand">
+                            <span className="uppercase tracking-widest">Exceso de Peso:</span>
                             <span className="font-bold">+${quoteResult.quote.recargo_peso.toFixed(2)}</span>
                           </div>
                         )}
-                      </>
-                    )}
-
-                    {quoteResult.quote.descuento_zona.pct > 0 && (
-                      <div className="flex justify-between text-xs text-[#25D366]">
-                        <span>Descuento Zona ({quoteResult.quote.descuento_zona.pct}%):</span>
-                        <span className="font-bold">-${quoteResult.quote.descuento_zona.amount.toFixed(2)}</span>
-                      </div>
-                    )}
-
-                    {quoteResult.quote.descuento_plan.pct > 0 && (
-                      <div className="flex justify-between text-xs text-[#25D366]">
-                        <span>Descuento Plan ({quoteResult.quote.descuento_plan.pct}%):</span>
-                        <span className="font-bold">-${quoteResult.quote.descuento_plan.amount.toFixed(2)}</span>
-                      </div>
-                    )}
-
-                    {quoteResult.quote.seguro > 0 && (
-                      <div className="flex justify-between text-xs text-gray-300">
-                        <span>Seguro (1%):</span>
-                        <span className="font-bold">+${quoteResult.quote.seguro.toFixed(2)}</span>
+                        {quoteResult.quote.descuento_zona.pct > 0 && (
+                          <div className="flex justify-between text-[11px] text-[#25D366]">
+                            <span className="uppercase tracking-widest">Descuento Zona ({quoteResult.quote.descuento_zona.pct}%):</span>
+                            <span className="font-bold">-${quoteResult.quote.descuento_zona.amount.toFixed(2)}</span>
+                          </div>
+                        )}
+                        {quoteResult.quote.descuento_plan.pct > 0 && (
+                          <div className="flex justify-between text-[11px] text-[#25D366]">
+                            <span className="uppercase tracking-widest">Plan Suscriptor ({quoteResult.quote.descuento_plan.pct}%):</span>
+                            <span className="font-bold">-${quoteResult.quote.descuento_plan.amount.toFixed(2)}</span>
+                          </div>
+                        )}
+                        {quoteResult.quote.seguro > 0 && (
+                          <div className="flex justify-between text-[11px] text-amber-500">
+                            <span className="uppercase tracking-widest">Seguro Adicional:</span>
+                            <span className="font-bold">+${quoteResult.quote.seguro.toFixed(2)}</span>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
-
                   <button onClick={handleWhatsApp} className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 font-black uppercase tracking-[0.2em] text-[11px] hover:bg-[#1DA851] transition-all duration-300 shadow-[0_15px_30px_rgba(37,211,102,0.3)] rounded-xl cursor-pointer">
                     <MessageSquare size={16} /> Confirmar y Cerrar por WhatsApp
                   </button>
