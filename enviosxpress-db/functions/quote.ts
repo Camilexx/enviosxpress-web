@@ -7,6 +7,7 @@ const corsHeaders = {
 };
 
 interface QuoteRequest {
+  origen?: string;
   destino: string;
   tipo: "documento" | "carga";
   peso?: number;
@@ -21,8 +22,10 @@ serve(async (req) => {
   }
 
   try {
-    const { destino, tipo, peso, con_seguro, valor_declarado, plan_code }: QuoteRequest =
+    const { origen: reqOrigen, destino, tipo, peso, con_seguro, valor_declarado, plan_code }: QuoteRequest =
       await req.json();
+
+    const origen = reqOrigen || 'Quito';  // Default origen
 
     if (!destino || !tipo) {
       return new Response(
@@ -36,6 +39,7 @@ serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     const { data, error } = await supabase.rpc("calculate_shipping_price", {
+      p_origen: origen,
       p_destino: destino,
       p_tipo: tipo,
       p_peso: peso || 0,

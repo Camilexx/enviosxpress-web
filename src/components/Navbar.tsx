@@ -61,7 +61,7 @@ export default function Navbar() {
 
                         {/* Action Buttons */}
                         <div className="flex items-center gap-6 border-l border-gray-200 pl-8 h-8">
-                            <a href="#rastreo" title="Rastreo de envíos" className="flex items-center gap-2 text-[9px] font-black tracking-[0.2em] text-gray-500 hover:text-black transition-colors duration-200 cursor-pointer">
+                            <a href="#tracking" title="Rastreo de envíos" className="flex items-center gap-2 text-[9px] font-black tracking-[0.2em] text-gray-500 hover:text-black transition-colors duration-200 cursor-pointer">
                                 <PackageSearch size={14} />
                                 RASTREO
                             </a>
@@ -130,7 +130,7 @@ export default function Navbar() {
 
                         <div className="mt-8 flex flex-col gap-3">
                             <a
-                                href="#rastreo"
+                                href="#tracking"
                                 onClick={() => setMobileOpen(false)}
                                 className="flex items-center gap-4 text-base font-black text-gray-500 hover:text-black transition-colors duration-200 py-4 px-2 cursor-pointer border border-gray-100 rounded-xl"
                             >

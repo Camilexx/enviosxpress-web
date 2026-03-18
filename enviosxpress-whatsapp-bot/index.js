@@ -323,6 +323,8 @@ async function generateBotResponse(contactId, state, calculateQuote = false) {
         const quoteResult = await getCotizacion(contactId);
         if (quoteResult.success && quoteResult.quote) {
             quoteData = quoteResult.quote;
+            // Save quote to DB
+            saveCotizacion(contactId, d, quoteResult);
         }
     }
 
@@ -405,12 +407,69 @@ async function saveLeadToCRM(phone, data, status) {
             city: data.destino,
             source: 'whatsapp_bot',
             status: status,
+            volume_segment: data.plan ? 'emprendedor' : 'individual',
+            notes: data.destino ? `Último envío: ${data.origen || 'Quito'} → ${data.destino} (${data.tipo || 'N/A'})` : null,
             last_interaction: new Date().toISOString()
         }, { onConflict: 'phone' });
 
         log.success(`Lead guardado: ${phone} - ${status}`);
     } catch (e) {
         log.error(`CRM save error: ${e.message}`);
+    }
+}
+
+async function saveChatHistory(phone, messageIn, responseOut) {
+    if (supabaseUrl === 'MISSING_URL') return;
+
+    try {
+        await supabase.from('chat_history').insert({
+            lead_phone: phone,
+            message_in: messageIn,
+            response_out: responseOut,
+            message_type: 'incoming',
+            detected_intent: detectIntent(messageIn),
+        });
+    } catch (e) {
+        log.error(`Chat history save error: ${e.message}`);
+    }
+}
+
+function detectIntent(text) {
+    const lower = text.toLowerCase();
+    if (lower.includes('precio') || lower.includes('cuanto') || lower.includes('cuánto') || lower.includes('cotiz')) return 'cotizacion';
+    if (lower.includes('si') || lower.includes('confirmo') || lower.includes('dale')) return 'cierre';
+    if (lower.includes('no') || lower.includes('caro') || lower.includes('otro')) return 'objecion';
+    return 'informacion';
+}
+
+async function saveCotizacion(phone, data, quoteResult) {
+    if (supabaseUrl === 'MISSING_URL' || !quoteResult?.quote) return;
+
+    try {
+        const q = quoteResult.quote;
+        await supabase.from('shipments').insert({
+            tracking_number: `QUO-${Date.now()}`,
+            origen_city: q.origen || 'Quito',
+            destino_city: q.destino,
+            origen_zone: 'nacional',
+            destino_zone: q.zone_name,
+            shipment_type: q.shipment_type || data.tipo,
+            peso_kg: q.peso_kg || data.peso || 0,
+            valor_declarado: data.valor_declarado || 0,
+            con_seguro: data.con_seguro || false,
+            precio_base: q.tarifa_base,
+            descuento_zona: q.descuento_zona?.amount || 0,
+            descuento_plan: q.descuento_plan?.amount || 0,
+            recargo_peso: q.recargo_peso || 0,
+            seguro: q.seguro || 0,
+            precio_total: q.precio_total,
+            plan_aplicado: q.plan_aplicado || null,
+            estado: 'pendiente',
+            observaciones: `Cotización bot WhatsApp - ${phone}`,
+        });
+        log.success(`Cotización guardada para ${phone}`);
+    } catch (e) {
+        log.error(`Cotización save error: ${e.message}`);
     }
 }
 
@@ -534,9 +593,10 @@ function createClient() {
 
             const responseText = await processMessage(contactId, incomingText);
 
-            // Guardar en CRM
+            // Guardar en CRM y chat history
             const flow = getOrCreateFlow(contactId);
             saveLeadToCRM(contactId, flow.data, 'en_conversacion');
+            saveChatHistory(contactId, incomingText, responseText);
 
             // Delay humano
             const delay = 800 + Math.min(responseText.length * 15, 2500) + Math.random() * 500;

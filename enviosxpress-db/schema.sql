@@ -307,8 +307,16 @@ ORDER BY z.display_name;
 -- 14. FUNCION: CALCULAR PRECIO DE ENVÍO
 -- ═══════════════════════════════════════════════════════════════════════════
 -- Esta función centraliza TODA la lógica de precios
+-- p_origen: ciudad de origen (para detectar envíos ciudad-ciudad)
+-- p_destino: ciudad de destino
+-- p_tipo: 'documento' o 'carga'
+-- p_peso: peso en kg
+-- p_con_seguro: true/false
+-- p_valor_declarado: valor declarado para seguro
+-- p_plan_code: código de plan de suscripción
 -- apply_plan_discount: true/false - aplicar descuento de plan
 CREATE OR REPLACE FUNCTION calculate_shipping_price(
+    p_origen TEXT DEFAULT 'Quito',
     p_destino TEXT,
     p_tipo TEXT,           -- 'documento' o 'carga'
     p_peso DECIMAL(10,2), -- peso en kg
@@ -354,7 +362,21 @@ DECLARE
     v_precio_total DECIMAL(10,2);
     v_peso_calculado DECIMAL(10,2);
     v_kilos_extra INTEGER;
+    v_origen RECORD;
+    v_es_envio_ciudad BOOLEAN := false;
+    v_city_tier_final TEXT;
 BEGIN
+    -- Validar origen
+    SELECT * INTO v_origen 
+    FROM cities 
+    WHERE name ILIKE p_origen AND is_active = true
+    LIMIT 1;
+    
+    -- Si origen no existe, usar valor por defecto
+    IF NOT FOUND THEN
+        v_origen := ROW(NULL, 'Quito', 'Pichincha', 'nacional', 'principal', '24 horas', true)::cities;
+    END IF;
+    
     -- Validar destino
     SELECT * INTO v_city 
     FROM cities 
@@ -369,22 +391,33 @@ BEGIN
         RETURN;
     END IF;
 
+    -- Determinar si es envío ciudad-ciudad (mismo ciudad)
+    -- Normalizar nombres para comparación
+    v_es_envio_ciudad := LOWER(TRIM(v_origen.name)) = LOWER(TRIM(v_city.name));
+    
+    -- Determinar el tier final: si es ciudad-ciudad, usar 'ciudad', sino usar el tier de la ciudad
+    IF v_es_envio_ciudad THEN
+        v_city_tier_final := 'ciudad';
+    ELSE
+        v_city_tier_final := v_city.city_tier;
+    END IF;
+
     -- Obtener zona
     SELECT * INTO v_zone FROM zones WHERE name = v_city.zone_name;
     
-    -- Obtener tarifa
+    -- Obtener tarifa usando el tier determinado
     SELECT * INTO v_rate 
     FROM shipping_rates 
     WHERE zone_name = v_city.zone_name 
         AND shipment_type = p_tipo 
-        AND city_tier = v_city.city_tier
+        AND city_tier = v_city_tier_final
         AND is_active = true
     LIMIT 1;
     
     IF NOT FOUND THEN
         RETURN QUERY SELECT 
             false, 
-            'Tarifa no encontrada para zona ' || v_city.zone_name || ' tipo ' || p_tipo || ' tier ' || v_city.city_tier, 
+            'Tarifa no encontrada para zona ' || v_city.zone_name || ' tipo ' || p_tipo || ' tier ' || v_city_tier_final, 
             NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL;
         RETURN;
     END IF;
@@ -477,12 +510,12 @@ DECLARE
         ARRAY['Pomasqui', 'Pichincha', 'nacional', 'secundaria', '24 horas'],
         ARRAY['San Antonio de Quito', 'Pichincha', 'nacional', 'secundaria', '24 horas'],
         ARRAY['Cayambe', 'Pichincha', 'norte', 'principal', '24 horas'],
-        ARRAY['Tabacundo', 'Pichincha', 'norte', 'secundaria', '24 horas'],
+        ARRAY['Tabacundo', 'Pichincha', 'norte', 'secundario', '24 horas'],
 
         -- GUAYAS (Guayaquil - Nacional Principal)
         ARRAY['Guayaquil', 'Guayas', 'nacional', 'principal', '24 horas'],
-        ARRAY['Durán', 'Guayas', 'nacional', 'secundaria', '48-72 horas'],
-        ARRAY['Samborondón', 'Guayas', 'nacional', 'secundaria', '48 horas'],
+        ARRAY['Durán', 'Guayas', 'nacional', 'secundario', '48-72 horas'],
+        ARRAY['Samborondón', 'Guayas', 'nacional', 'secundario', '48 horas'],
         ARRAY['Milagro', 'Guayas', 'nacional', 'especial', 'Martes, Jueves, Sábado'],
         ARRAY['Pascuales', 'Guayas', 'nacional', 'especial', '48-72 horas'],
         ARRAY['La Puntilla', 'Guayas', 'nacional', 'especial', '48-72 horas'],
@@ -491,13 +524,13 @@ DECLARE
         ARRAY['Ibarra', 'Imbabura', 'norte', 'principal', '24 horas'],
         ARRAY['Atuntaqui', 'Imbabura', 'norte', 'principal', '24 horas'],
         ARRAY['Otavalo', 'Imbabura', 'norte', 'principal', '24 horas'],
-        ARRAY['San Antonio de Ibarra', 'Imbabura', 'norte', 'secundaria', '24 horas'],
+        ARRAY['San Antonio de Ibarra', 'Imbabura', 'norte', 'secundario', '24 horas'],
         ARRAY['Cotacachi', 'Imbabura', 'norte', 'especial', 'Martes y Jueves'],
         ARRAY['Antonio Ante', 'Imbabura', 'norte', 'especial', '48 horas'],
 
         -- CARCHI (Zona Norte)
-        ARRAY['Tulcán', 'Carchi', 'norte', 'secundaria', '24 horas'],
-        ARRAY['González Suárez', 'Carchi', 'norte', 'secundaria', '24 horas'],
+        ARRAY['Tulcán', 'Carchi', 'norte', 'secundario', '24 horas'],
+        ARRAY['González Suárez', 'Carchi', 'norte', 'secundario', '24 horas'],
         ARRAY['Bolívar', 'Carchi', 'norte', 'especial', '24 horas'],
         ARRAY['Huaca', 'Carchi', 'norte', 'especial', '24-48 horas'],
         ARRAY['San Gabriel', 'Carchi', 'norte', 'especial', '24-48 horas'],
@@ -506,9 +539,9 @@ DECLARE
 
         -- AZUAY
         ARRAY['Cuenca', 'Azuay', 'nacional', 'principal', '24 horas'],
-        ARRAY['Baños (Azuay)', 'Azuay', 'nacional', 'secundaria', '48 horas'],
-        ARRAY['Ricaurte', 'Azuay', 'national', 'secundaria', '48 horas'],
-        ARRAY['San Joaquín', 'Azuay', 'nacional', 'secundaria', '48 horas'],
+        ARRAY['Baños (Azuay)', 'Azuay', 'nacional', 'secundario', '48 horas'],
+        ARRAY['Ricaurte', 'Azuay', 'nacional', 'secundario', '48 horas'],
+        ARRAY['San Joaquín', 'Azuay', 'nacional', 'secundario', '48 horas'],
         ARRAY['Santa Ana', 'Azuay', 'nacional', 'especial', '48-72 horas'],
         ARRAY['Gualaceo', 'Azuay', 'nacional', 'especial', '48-72 horas'],
 
@@ -522,8 +555,8 @@ DECLARE
 
         -- TUNGURAHUA
         ARRAY['Ambato', 'Tungurahua', 'nacional', 'principal', '24 horas'],
-        ARRAY['Baños de Agua Santa', 'Tungurahua', 'nacional', 'secundaria', '24-48 horas'],
-        ARRAY['Pelileo', 'Tungurahua', 'nacional', 'secundaria', '24-48 horas'],
+        ARRAY['Baños de Agua Santa', 'Tungurahua', 'nacional', 'secundario', '24-48 horas'],
+        ARRAY['Pelileo', 'Tungurahua', 'nacional', 'secundario', '24-48 horas'],
 
         -- MANABÍ
         ARRAY['Manta', 'Manabí', 'nacional', 'principal', '24 horas (después 13h)'],
@@ -534,44 +567,44 @@ DECLARE
 
         -- LOS RÍOS
         ARRAY['Quevedo', 'Los Ríos', 'nacional', 'principal', '24 horas'],
-        ARRAY['Buena Fe', 'Los Ríos', 'nacional', 'secundaria', '24 horas'],
-        ARRAY['Valencia', 'Los Ríos', 'nacional', 'secundaria', '24 horas'],
-        ARRAY['La Maná', 'Los Ríos', 'nacional', 'secundaria', '24 horas'],
+        ARRAY['Buena Fe', 'Los Ríos', 'nacional', 'secundario', '24 horas'],
+        ARRAY['Valencia', 'Los Ríos', 'nacional', 'secundario', '24 horas'],
+        ARRAY['La Maná', 'Los Ríos', 'nacional', 'secundario', '24 horas'],
         ARRAY['Babahoyo', 'Los Ríos', 'nacional', 'especial', 'Martes, Jueves, Sábado'],
 
         -- ESMERALDAS
         ARRAY['Esmeraldas', 'Esmeraldas', 'nacional', 'principal', '24 horas'],
-        ARRAY['Tonsupa', 'Esmeraldas', 'nacional', 'secundaria', '24 horas'],
-        ARRAY['Atacames', 'Esmeraldas', 'nacional', 'secundaria', '24 horas'],
+        ARRAY['Tonsupa', 'Esmeraldas', 'nacional', 'secundario', '24 horas'],
+        ARRAY['Atacames', 'Esmeraldas', 'nacional', 'secundario', '24 horas'],
 
         -- EL ORO
-        ARRAY['Machala', 'El Oro', 'nacional', 'secundaria', '24-48 horas'],
+        ARRAY['Machala', 'El Oro', 'nacional', 'secundario', '24-48 horas'],
 
         -- LOJA
-        ARRAY['Loja', 'Loja', 'nacional', 'secundaria', '48 horas'],
+        ARRAY['Loja', 'Loja', 'nacional', 'secundario', '48 horas'],
 
         -- SANTO DOMINGO
         ARRAY['Santo Domingo', 'Santo Domingo', 'nacional', 'principal', '24 horas'],
-        ARRAY['El Carmen (SD)', 'Santo Domingo', 'nacional', 'secundaria', '24-48 horas'],
-        ARRAY['La Concordia', 'Santo Domingo', 'nacional', 'secundaria', '24-48 horas'],
+        ARRAY['El Carmen (SD)', 'Santo Domingo', 'nacional', 'secundario', '24-48 horas'],
+        ARRAY['La Concordia', 'Santo Domingo', 'nacional', 'secundario', '24-48 horas'],
 
         -- ORIENTE - SUCUMBÍOS
         ARRAY['Lago Agrio', 'Sucumbíos', 'oriente', 'principal', '24 horas'],
-        ARRAY['Shushufindi', 'Sucumbíos', 'oriente', 'secundaria', '24 horas'],
+        ARRAY['Shushufindi', 'Sucumbíos', 'oriente', 'secundario', '24 horas'],
         ARRAY['Cascales', 'Sucumbíos', 'oriente', 'especial', '24-48 horas'],
 
         -- ORIENTE - FRANCISCO DE ORELLANA
         ARRAY['El Coca', 'Francisco de Orellana', 'oriente', 'principal', '24 horas'],
-        ARRAY['Joya de los Sachas', 'Francisco de Orellana', 'oriente', 'secundaria', '24 horas'],
+        ARRAY['Joya de los Sachas', 'Francisco de Orellana', 'oriente', 'secundario', '24 horas'],
 
         -- ORIENTE - NAPO
         ARRAY['Tena', 'Napo', 'oriente', 'principal', 'Martes y Jueves'],
-        ARRAY['Baeza', 'Napo', 'oriente', 'secundaria', 'Martes y Jueves'],
+        ARRAY['Baeza', 'Napo', 'oriente', 'secundario', 'Martes y Jueves'],
         ARRAY['Archidona', 'Napo', 'oriente', 'especial', 'Martes y Jueves'],
 
         -- ORIENTE - PASTAZA
         ARRAY['Puyo', 'Pastaza', 'oriente', 'principal', 'Martes y Jueves'],
-        ARRAY['Shell', 'Pastaza', 'oriente', 'secundaria', 'Martes y Jueves'],
+        ARRAY['Shell', 'Pastaza', 'oriente', 'secundario', 'Martes y Jueves'],
 
         -- CAÑAR
         ARRAY['Azogues', 'Cañar', 'nacional', 'especial', '48 horas'],
@@ -595,29 +628,49 @@ END $$;
 -- ═══════════════════════════════════════════════════════════════════════════
 -- 16. SEED: Tarifas
 -- ═══════════════════════════════════════════════════════════════════════════
+-- TARIFAS OFICIALES ENVIOSXPRESS 2026
+-- Ciudad-Ciudad: mismo ciudad (Quito a Quito) = $3.00
+-- Principal: ciudades principales = $3.50
+-- Secundario: ciudades secundarias = $4.00
+-- Especial: zonas de difícil acceso = $5.00
+-- Oriente tiene tarifas adicionales
+-- 5kg incluidos en tarifa base, cargo por kilo adicional a partir del 6to kg
+
 INSERT INTO shipping_rates (zone_name, shipment_type, city_tier, base_price, extra_kg_price_min, extra_kg_price_max)
 SELECT * FROM (VALUES
-    -- NACIONAL
-    ('nacional', 'documento', 'principal', 3.00, 0.25, 0.50),
-    ('nacional', 'documento', 'secundaria', 4.00, 0.25, 0.50),
-    ('nacional', 'documento', 'especial', 5.00, 0.25, 0.50),
-    ('nacional', 'carga', 'principal', 4.00, 0.50, 0.75),
-    ('nacional', 'carga', 'secundaria', 5.00, 0.50, 0.75),
-    ('nacional', 'carga', 'especial', 6.00, 0.50, 0.75),
+    -- NACIONAL - Ciudad a Ciudad (mismo ciudad)
+    ('nacional', 'documento', 'ciudad', 3.00, 0.25, 0.25),
+    ('nacional', 'carga', 'ciudad', 3.00, 0.25, 0.25),
+    -- NACIONAL - Principal
+    ('nacional', 'documento', 'principal', 3.50, 0.35, 0.35),
+    ('nacional', 'carga', 'principal', 3.50, 0.35, 0.35),
+    -- NACIONAL - Secundario
+    ('nacional', 'documento', 'secundario', 4.00, 0.45, 0.45),
+    ('nacional', 'carga', 'secundario', 4.00, 0.45, 0.45),
+    -- NACIONAL - Especial
+    ('nacional', 'documento', 'especial', 5.00, 0.50, 0.50),
+    ('nacional', 'carga', 'especial', 5.00, 0.50, 0.50),
     -- NORTE (30% dto aplicado automáticamente por zona)
-    ('norte', 'documento', 'principal', 3.00, 0.25, 0.50),
-    ('norte', 'documento', 'secundaria', 4.00, 0.25, 0.50),
-    ('norte', 'documento', 'especial', 5.00, 0.25, 0.50),
-    ('norte', 'carga', 'principal', 4.00, 0.50, 0.75),
-    ('norte', 'carga', 'secundaria', 5.00, 0.50, 0.75),
-    ('norte', 'carga', 'especial', 6.00, 0.50, 0.75),
-    -- ORIENTE
-    ('oriente', 'documento', 'principal', 5.00, 0.25, 0.50),
-    ('oriente', 'documento', 'secundaria', 6.00, 0.25, 0.50),
-    ('oriente', 'documento', 'especial', 7.00, 0.25, 0.50),
-    ('oriente', 'carga', 'principal', 6.00, 0.50, 0.75),
-    ('oriente', 'carga', 'secundaria', 7.00, 0.50, 0.75),
-    ('oriente', 'carga', 'especial', 8.00, 0.50, 0.75)
+    ('norte', 'documento', 'ciudad', 2.10, 0.25, 0.25),
+    ('norte', 'carga', 'ciudad', 2.10, 0.25, 0.25),
+    ('norte', 'documento', 'principal', 2.45, 0.35, 0.35),
+    ('norte', 'carga', 'principal', 2.45, 0.35, 0.35),
+    ('norte', 'documento', 'secundario', 2.80, 0.45, 0.45),
+    ('norte', 'carga', 'secundario', 2.80, 0.45, 0.45),
+    ('norte', 'documento', 'especial', 3.50, 0.50, 0.50),
+    ('norte', 'carga', 'especial', 3.50, 0.50, 0.50),
+    -- ORIENTE - Principal
+    ('oriente', 'documento', 'principal', 5.00, 0.45, 0.45),
+    ('oriente', 'carga', 'principal', 5.00, 0.45, 0.45),
+    -- ORIENTE - Secundario
+    ('oriente', 'documento', 'secundario', 6.00, 0.50, 0.50),
+    ('oriente', 'carga', 'secundario', 6.00, 0.50, 0.50),
+    -- ORIENTE - Especial
+    ('oriente', 'documento', 'especial', 7.00, 0.75, 0.75),
+    ('oriente', 'carga', 'especial', 7.00, 0.75, 0.75),
+    -- ORIENTE - Ciudad
+    ('oriente', 'documento', 'ciudad', 5.00, 0.45, 0.45),
+    ('oriente', 'carga', 'ciudad', 5.00, 0.45, 0.45)
 ) AS t(zone_name, shipment_type, city_tier, base_price, extra_kg_price_min, extra_kg_price_max)
 ON CONFLICT (zone_name, shipment_type, city_tier) DO UPDATE SET
     base_price = EXCLUDED.base_price,

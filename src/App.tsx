@@ -6,6 +6,7 @@ import SocialProof from './components/SocialProof'
 import TrustBanner from './components/TrustBanner'
 import Servicios from './components/Servicios'
 import Cotizador from './components/Cotizador'
+import TrackingWidget from './components/TrackingWidget'
 import ComoFunciona from './components/ComoFunciona'
 import Cobertura from './components/Cobertura'
 import Testimonios from './components/Testimonios'
@@ -53,6 +54,7 @@ function App() {
       <Servicios />
       <Beneficios />
       <Cotizador />
+      <TrackingWidget />
       <ComoFunciona />
       <Cobertura />
       <Testimonios />
