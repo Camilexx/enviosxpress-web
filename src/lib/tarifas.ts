@@ -119,8 +119,8 @@ export function getCityTier(
 }
 
 export function calcularTarifa(
-  origen: string,
-  destino: string,
+  _origen: string,
+  _destino: string,
   tipo: ShipmentType,
   pesoKg: number,
   zona: ZoneName,
