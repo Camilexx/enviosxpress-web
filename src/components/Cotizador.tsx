@@ -33,17 +33,16 @@ export default function Cotizador() {
   useEffect(() => {
     async function loadData() {
       setLoading(true)
-      const [cRes, pRes] = await Promise.all([
-        supabase.from('cities').select('*').eq('is_active', true).order('province').order('name'),
-        supabase.from('subscription_plans').select('code, name, discount_pct, min_monthly_shipments').eq('is_active', true).order('min_monthly_shipments')
-      ])
-      if (cRes.data) setCities(cRes.data)
-      if (pRes.data) {
-        setPlanes(pRes.data)
-        // Auto-seleccionar Plan Emprendedor como default para fomentar conversión
-        const emprendedor = pRes.data.find((p: Plan) => p.code === 'emprendedor')
-        if (emprendedor) setSelectedPlan(emprendedor.code)
-      }
+      const { data: cData } = await supabase.from('cities').select('*').eq('is_active', true).order('province').order('name')
+      
+      const hardcodedPlanes: Plan[] = [
+        { code: 'emprendedor', name: 'Plan Emprendedor', discount_pct: 15, min_monthly_shipments: 20 },
+        { code: 'empresa', name: 'Plan Empresa', discount_pct: 5, min_monthly_shipments: 60 }
+      ]
+
+      if (cData) setCities(cData)
+      setPlanes(hardcodedPlanes)
+      setSelectedPlan('emprendedor') // Auto-seleccionar Plan Emprendedor
       setLoading(false)
     }
     loadData()
@@ -262,7 +261,7 @@ export default function Cotizador() {
                       <option value="" className="text-black">Sin plan (precio regular)</option>
                       {planes.map(plan => (
                         <option key={plan.code} value={plan.code} className="text-black">
-                          {plan.name} ({plan.discount_pct}% dto)
+                          {plan.name} {plan.code === 'empresa' ? '(5% a 20% dto por volumen)' : `(${plan.discount_pct}% dto)`}
                         </option>
                       ))}
                     </select>
