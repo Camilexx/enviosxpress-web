@@ -15,7 +15,7 @@ export default function Cobertura() {
                             <div className="inline-block border border-brand/10 bg-brand/5 text-brand font-black text-[10px] uppercase tracking-[0.3em] px-4 py-2 mb-6 rounded-full">
                                 Alcance Incomparable
                             </div>
-                            <h2 className="text-5xl lg:text-7xl font-black text-black mb-6 leading-[0.9] italic tracking-tighter">
+                            <h2 className="text-3xl lg:text-5xl font-black text-black mb-6 leading-[0.9] italic tracking-tighter">
                                 24 Provincias <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-400">Del Ecuador</span>
                             </h2>
@@ -54,7 +54,7 @@ export default function Cobertura() {
 
                                 {/* Promo Ribbon Badge */}
                                 <div className="absolute -right-20 top-10 bg-brand text-white px-24 py-2 rotate-45 font-black text-xl lg:text-2xl shadow-xl shadow-brand/50 select-none pointer-events-none text-center">
-                                    30% OFF
+                                    25% OFF
                                 </div>
 
                                 <div className="text-brand font-black text-[12px] uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
@@ -65,17 +65,17 @@ export default function Cobertura() {
                                 </h3>
 
                                 <p className="text-gray-300 text-sm font-medium mb-6 leading-relaxed max-w-sm">
-                                    Optimiza tus costos hoy. Obtén un <strong className="text-white text-base">descuento de hasta el 30%</strong> en fletes diarios a través de nuestra ruta de ultra-eficiencia:
+                                    Optimiza tus costos hoy. Obtén un <strong className="text-white text-base">descuento de hasta el 25%</strong> en fletes diarios a través de nuestra ruta de ultra-eficiencia:
                                 </p>
 
                                 {/* Route path */}
                                 <div className="bg-white/5 border border-white/10 p-4 mb-8 font-mono text-[10px] lg:text-xs text-white uppercase tracking-widest leading-relaxed">
-                                    Quito ➔ Tabacundo ➔ Cayambe ➔ Otavalo ➔ Cotacachi ➔ Atuntaqui ➔ Ibarra ➔ Tulcán
+                                    Quito ➔ Tabacundo ➔ Cayambe ➔ Otavalo ➔ Cotacachi ➔ Atuntaqui ➔ Ibarra
                                 </div>
 
                                 {/* High-CTR Button */}
                                 <a href="#cotizador" className="btn-primary w-full justify-center bg-brand text-white shadow-[0_0_20px_rgba(114,47,55,0.7)] border border-brand hover:bg-white hover:text-black hover:border-white cursor-pointer py-5 transition-all duration-300 transform group-hover:scale-[1.02]">
-                                    RECLAMAR 30% DE DESCUENTO <ArrowRight size={18} className="ml-2 group-hover:translate-x-2 transition-transform" />
+                                    RECLAMAR 25% DE DESCUENTO <ArrowRight size={18} className="ml-2 group-hover:translate-x-2 transition-transform" />
                                 </a>
                             </div>
                         </div>

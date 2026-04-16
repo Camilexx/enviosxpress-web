@@ -60,7 +60,7 @@ export default function Beneficios() {
                     <div className="inline-block border border-brand/20 glass-brand text-brand font-black text-[10px] uppercase tracking-[0.4em] px-6 py-2.5 mb-8 rounded-full">
                         Premium Logistics Choice
                     </div>
-                    <h2 className="text-6xl lg:text-8xl font-black text-black italic tracking-tighter uppercase mb-8 leading-[0.85]">
+                    <h2 className="text-4xl lg:text-6xl font-black text-black italic tracking-tighter uppercase mb-8 leading-[0.9]">
                         Diseño <span className="text-brand">Operativo</span> <br />
                         De Alto Rendimiento
                     </h2>
@@ -103,7 +103,7 @@ export default function Beneficios() {
 
                     <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
                         <div className="max-w-2xl text-center lg:text-left">
-                            <h3 className="text-4xl lg:text-6xl font-black italic tracking-tighter uppercase mb-6 leading-none">
+                            <h3 className="text-2xl lg:text-4xl font-black italic tracking-tighter uppercase mb-6 leading-none">
                                 Impulsa Tu <br className="hidden lg:block" />
                                 <span className="text-brand">Crecimiento Nacional</span>
                             </h3>

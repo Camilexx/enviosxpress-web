@@ -38,8 +38,8 @@ function AnimatedCounter({ end, suffix = '', prefix = '', duration = 1400, decim
     }, [started, end, duration, decimals])
 
     return (
-        <div ref={ref} className="text-5xl lg:text-7xl font-black text-white italic tracking-tighter mb-4 tabular-nums drop-shadow-md">
-            {prefix}{decimals ? count.toFixed(decimals) : count.toLocaleString()}<span className="text-brand text-3xl lg:text-5xl">{suffix}</span>
+        <div ref={ref} className="text-4xl lg:text-5xl font-black text-white italic tracking-tighter mb-4 tabular-nums drop-shadow-md">
+            {prefix}{decimals ? count.toFixed(decimals) : count.toLocaleString()}<span className="text-brand text-2xl lg:text-4xl">{suffix}</span>
         </div>
     )
 }

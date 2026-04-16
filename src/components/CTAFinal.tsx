@@ -33,7 +33,7 @@ export default function CTAFinal() {
                     {/* Copy Section */}
                     <div className="animate-in">
                         <div className="text-brand font-black text-[11px] uppercase tracking-[0.25em] mb-3">Empieza a Enviar Hoy</div>
-                        <h2 className="text-4xl lg:text-6xl font-black mb-8 leading-[0.9] tracking-tighter">
+                        <h2 className="text-3xl lg:text-4xl font-black mb-8 leading-[0.9] tracking-tighter">
                             Simplifica tu <br /> Logística Hoy
                         </h2>
                         <p className="text-gray-400 font-medium mb-10 max-w-md leading-relaxed text-base">

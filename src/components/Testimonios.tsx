@@ -92,7 +92,7 @@ export default function Testimonios() {
                         <div className="inline-block border border-black/10 bg-gray-50 text-black font-black text-[10px] uppercase tracking-[0.3em] px-4 py-2 mb-6 rounded-full">
                             Validación Técnica
                         </div>
-                        <h2 className="text-5xl lg:text-7xl font-black text-black italic tracking-tighter uppercase mb-6 leading-[0.9]">
+                        <h2 className="text-3xl lg:text-5xl font-black text-black italic tracking-tighter uppercase mb-6 leading-[0.9]">
                             El Respaldo de <br />
                             <span className="text-brand">Los Mejores</span>
                         </h2>
@@ -103,7 +103,7 @@ export default function Testimonios() {
 
                     <div className="animate-in is-revealed animate-delay-2">
                         <div className="flex flex-col md:items-end md:text-right border-l md:border-l-0 md:border-r-4 border-brand pl-4 md:pl-0 md:pr-6 py-2">
-                            <div className="text-5xl lg:text-6xl font-black italic tracking-tighter text-black mb-2">
+                            <div className="text-3xl lg:text-4xl font-black italic tracking-tighter text-black mb-2">
                                 4.9<span className="text-brand text-3xl">/5</span>
                             </div>
                             <div className="flex gap-1 mb-2 md:justify-end">

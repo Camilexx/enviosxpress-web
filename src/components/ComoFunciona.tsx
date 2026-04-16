@@ -33,7 +33,7 @@ export default function ComoFunciona() {
                     <div className="inline-block border border-brand/40 bg-brand/10 text-brand font-black text-[10px] uppercase tracking-[0.3em] px-4 py-2 mb-6 rounded-full shadow-[0_0_15px_rgba(114,47,55,0.3)]">
                         Proceso Sin Fricción
                     </div>
-                    <h2 className="text-4xl lg:text-7xl font-black italic tracking-tighter uppercase mb-6 leading-[0.9] drop-shadow-lg">
+                    <h2 className="text-3xl lg:text-5xl font-black italic tracking-tighter uppercase mb-6 leading-[0.95] drop-shadow-lg">
                         Envía en <span className="text-metallic-brand">3 Pasos</span>
                     </h2>
                     <p className="text-gray-400 font-medium leading-relaxed text-base md:text-xl max-w-2xl mx-auto">

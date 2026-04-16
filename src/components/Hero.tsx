@@ -33,7 +33,7 @@ export default function Hero() {
 
                         <div className="animate-in animate-delay-2 is-revealed relative gpu-accel">
                             {/* PAS Formula: Problem → Agitate → Solution */}
-                            <h1 className="relative text-[2.75rem] sm:text-7xl lg:text-[6.5rem] font-black italic tracking-tighter text-black mb-6 sm:mb-8 leading-[0.85] uppercase">
+                            <h1 className="relative text-[2.75rem] sm:text-5xl lg:text-[5rem] font-black italic tracking-tighter text-black mb-6 sm:mb-8 leading-[0.9] uppercase">
                                 Tu Envío{' '}
                                 <span className="text-metallic-brand">
                                     Seguro

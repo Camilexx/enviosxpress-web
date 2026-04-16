@@ -49,7 +49,7 @@ export default function Servicios() {
                         <div className="inline-block border border-brand/20 glass-brand text-brand font-black text-[10px] uppercase tracking-[0.4em] px-6 py-2.5 mb-8 rounded-full shadow-sm">
                             Servicios de Crecimiento
                         </div>
-                        <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-black italic tracking-tighter uppercase mb-8 leading-[0.85]">
+                        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-black italic tracking-tighter uppercase mb-8 leading-[0.9]">
                             Soluciones a <br />
                             <span className="text-metallic-brand">Tu Medida</span>
                         </h2>

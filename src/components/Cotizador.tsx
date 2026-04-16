@@ -1,17 +1,10 @@
 import { useState, useEffect, useMemo } from 'react'
-import { Calculator, Check, MessageSquare, Package, FileText, Shield, Loader2, Zap, ChevronDown, MapPin, Clock } from 'lucide-react'
+import { Calculator, Check, MessageSquare, Package, FileText, Shield, Loader2, Zap, MapPin, Clock } from 'lucide-react'
 import { supabase, getQuote, type QuoteResponse } from '../lib/supabase'
 
 type TipoEnvio = 'documento' | 'carga'
 
 type City = { name: string, province: string, zone_name: string, city_tier: string, delivery_time: string }
-
-type Plan = {
-  code: string
-  name: string
-  discount_pct: number
-  min_monthly_shipments: number
-}
 
 export default function Cotizador() {
   const [origen, setOrigen] = useState('Quito')
@@ -21,10 +14,8 @@ export default function Cotizador() {
   const [conSeguro, setConSeguro] = useState(false)
   const [valorDeclarado, setValorDeclarado] = useState('')
   const [showResult, setShowResult] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState('')
 
   const [cities, setCities] = useState<City[]>([])
-  const [planes, setPlanes] = useState<Plan[]>([])
   const [loading, setLoading] = useState(true)
   const [quoting, setQuoting] = useState(false)
   const [quoteResult, setQuoteResult] = useState<QuoteResponse | null>(null)
@@ -34,15 +25,7 @@ export default function Cotizador() {
     async function loadData() {
       setLoading(true)
       const { data: cData } = await supabase.from('cities').select('*').eq('is_active', true).order('province').order('name')
-      
-      const hardcodedPlanes: Plan[] = [
-        { code: 'emprendedor', name: 'Plan Emprendedor', discount_pct: 15, min_monthly_shipments: 20 },
-        { code: 'empresa', name: 'Plan Empresa', discount_pct: 5, min_monthly_shipments: 60 }
-      ]
-
       if (cData) setCities(cData)
-      setPlanes(hardcodedPlanes)
-      setSelectedPlan('emprendedor') // Auto-seleccionar Plan Emprendedor
       setLoading(false)
     }
     loadData()
@@ -72,7 +55,7 @@ export default function Cotizador() {
         tipo === 'carga' ? parseFloat(peso) : 0,
         conSeguro,
         valorDeclarado ? parseFloat(valorDeclarado) : 0,
-        selectedPlan || undefined
+        undefined
       )
 
       setQuoteResult(result)
@@ -112,10 +95,9 @@ export default function Cotizador() {
     if (!quoteResult?.quote) return
 
     const q = quoteResult.quote
-    const planText = selectedPlan ? `\nPlan: ${planes.find(p => p.code === selectedPlan)?.name || selectedPlan}` : ''
     const seguroText = conSeguro ? `\nSeguro sobre: $${valorDeclarado}` : ''
 
-    const message = `Hola EnviosXpress, solicito envío:\nOrigen: ${q.origen}\nDestino: ${q.destino}\nTipo: ${tipo === 'carga' ? `Carga (${peso}kg)` : 'Documento'}${seguroText}${planText}\n\nYa tengo mi cotización: $${q.precio_total.toFixed(2)}`
+    const message = `Hola EnviosXpress, solicito envío:\nOrigen: ${q.origen}\nDestino: ${q.destino}\nTipo: ${tipo === 'carga' ? `Carga (${peso}kg)` : 'Documento'}${seguroText}\n\nYa tengo mi cotización: $${q.precio_total.toFixed(2)}`
 
     window.open(`https://wa.me/593967489002?text=${encodeURIComponent(message)}`, '_blank')
   }
@@ -138,14 +120,14 @@ export default function Cotizador() {
               COTIZA TU <br /> <span className="text-metallic-brand">ENVÍO AHORA</span>
             </h2>
             <p className="text-gray-500 mb-8 max-w-md font-medium text-base leading-relaxed">
-              Tarifas fijas con 5kg incluidos. Descuentos automáticos en Zona Norte (30%) y Planes de Suscripción.
+              Tarifas fijas con 5kg incluidos. Descuento automático del 25% en Zona Norte y seguro opcional.
             </p>
 
             <div className="space-y-4">
               {[
                 'Tarifa Plana Nacional (Hasta 5kg incluidos)',
-                '30% descuento en Zona Norte',
-                'Planes desde 15% descuento',
+                '25% descuento en Zona Norte',
+                'Entregas en 24-48h a todo el Ecuador',
                 'Seguro opcional (1% valor declarado)'
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 text-black font-bold text-sm">
@@ -229,7 +211,7 @@ export default function Cotizador() {
                       <optgroup key={province} label={province} className="text-black">
                         {cities.map(c => (
                           <option key={`${c.province}_${c.name}`} value={c.name} className="text-black">
-                            {c.name} {c.zone_name === 'norte' ? '(Norte -30%)' : c.zone_name === 'oriente' ? '(Oriente)' : ''}
+                            {c.name} {c.zone_name === 'norte' ? '(Norte -25%)' : c.zone_name === 'oriente' ? '(Oriente)' : ''}
                           </option>
                         ))}
                       </optgroup>
@@ -252,25 +234,6 @@ export default function Cotizador() {
                     />
                   </div>
                 )}
-
-                <div>
-                  <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">¿Tienes Plan de Suscripción?</label>
-                  <div className="relative">
-                    <select
-                      value={selectedPlan}
-                      onChange={(e) => setSelectedPlan(e.target.value)}
-                      className="w-full bg-white/5 border-b border-white/20 p-3 font-bold text-white focus:border-brand outline-none transition-colors cursor-pointer appearance-none"
-                    >
-                      <option value="" className="text-black">Sin plan (precio regular)</option>
-                      {planes.map(plan => (
-                        <option key={plan.code} value={plan.code} className="text-black">
-                          {plan.name} {plan.code === 'empresa' ? '(5% a 20% dto por volumen)' : `(${plan.discount_pct}% dto)`}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={16} />
-                  </div>
-                </div>
 
                 <div>
                   <label className="flex items-center gap-3 cursor-pointer group">
