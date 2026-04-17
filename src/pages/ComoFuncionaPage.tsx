@@ -1,6 +1,8 @@
 import { Phone, Truck, MapPin, CheckCircle, ArrowRight, Package, Clock, Shield } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { PageHero } from '../components/PageHero'
 
-const pasos = [
+const PASOS = [
     {
         number: '01',
         icon: Phone,
@@ -58,7 +60,25 @@ const pasos = [
     },
 ]
 
-const faqs = [
+const REQUISITOS = [
+    {
+        icon: Package,
+        title: 'Embalaje Correcto',
+        desc: 'Empaque adecuado para el tipo de producto. Frágiles deben indicarse con etiqueta visible para manejo especial.',
+    },
+    {
+        icon: Clock,
+        title: 'Horario Pickup',
+        desc: 'Solicita con al menos 2 horas de anticipación. Pickup disponible lunes a sábado de 08:00 a 17:00.',
+    },
+    {
+        icon: Shield,
+        title: 'Declaración de Valor',
+        desc: 'Indica el valor del contenido para efectos del seguro de la guía. Requerido para servicio COD.',
+    },
+]
+
+const FAQS = [
     {
         q: '¿Cuál es el peso máximo permitido?',
         a: 'Para envíos estándar aceptamos hasta 50 kg por guía. Cargas mayores se manejan como logística B2B con tarifa corporativa a medida.',
@@ -87,54 +107,100 @@ const faqs = [
 
 export default function ComoFuncionaPage() {
     return (
-        <main className="pt-24">
-                {/* Hero */}
-                <section className="bg-black text-white py-20 lg:py-28 relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 50% 80%, #722F37 0%, transparent 60%)' }} />
-                    <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-                        <div className="inline-block border border-brand/40 bg-brand/10 text-brand font-black text-[10px] uppercase tracking-[0.3em] px-4 py-2 mb-6 rounded-full">
-                            Metodología Logística
-                        </div>
-                        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black italic tracking-tighter uppercase mb-6 leading-[0.9]">
-                            Cómo <span className="text-brand">Funciona</span>
-                        </h1>
-                        <p className="text-gray-400 font-medium max-w-xl text-base leading-relaxed">
-                            5 pasos, de la solicitud a la entrega confirmada. Procesos estandarizados para máxima eficiencia.
-                        </p>
-                    </div>
-                </section>
+        <main className="bg-black min-h-screen">
+            <PageHero
+                badge="Metodología Logística"
+                title="¿Cómo"
+                highlight="Funciona?"
+                subtitle="Cinco pasos, de la solicitud a la entrega confirmada. Procesos estandarizados para máxima eficiencia y cero sorpresas."
+            />
 
-                {/* Pasos */}
-                <section className="bg-white py-20 lg:py-28">
-                    <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-                        <div className="space-y-12">
-                            {pasos.map((p, i) => {
-                                const Icon = p.icon
-                                const isEven = i % 2 === 0
+            {/* Stats */}
+            <section className="bg-[#0a0a0a] border-b border-white/5 py-8">
+                <div className="container-swiss">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        {[
+                            { n: '5', label: 'Pasos del proceso' },
+                            { n: '24-48h', label: 'Tiempo de entrega' },
+                            { n: '2', label: 'Intentos de entrega' },
+                            { n: '99.8%', label: 'Efectividad' },
+                        ].map((stat, i) => (
+                            <div
+                                key={i}
+                                className="text-center animate-in"
+                                style={{ animationDelay: `${i * 0.08}s` }}
+                            >
+                                <div className="text-2xl lg:text-3xl font-black italic tracking-tighter text-white mb-1">
+                                    {stat.n}
+                                </div>
+                                <div className="text-[9px] font-black uppercase tracking-[0.25em] text-gray-500">
+                                    {stat.label}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Timeline */}
+            <section className="py-20 lg:py-28">
+                <div className="container-swiss">
+                    <div className="mb-12 animate-in">
+                        <div className="text-brand font-black text-[11px] uppercase tracking-[0.25em] mb-3">
+                            De solicitud a entrega
+                        </div>
+                        <h2 className="text-2xl lg:text-3xl font-black italic tracking-tighter uppercase text-white">
+                            El <span className="text-brand">Proceso</span> Paso a Paso
+                        </h2>
+                    </div>
+
+                    <div className="relative max-w-4xl">
+                        {/* Vertical connecting line */}
+                        <div
+                            className="absolute left-[31px] top-8 bottom-8 w-[2px] bg-gradient-to-b from-brand via-brand/30 to-transparent pointer-events-none"
+                            aria-hidden="true"
+                        />
+
+                        <div className="space-y-8">
+                            {PASOS.map((paso, i) => {
+                                const Icon = paso.icon
                                 return (
                                     <div
                                         key={i}
-                                        className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-10 lg:gap-16 items-center border-b border-gray-100 pb-12`}
+                                        className="relative flex gap-8 animate-in"
+                                        style={{ animationDelay: `${i * 0.12}s` }}
                                     >
-                                        <div className="flex-shrink-0 w-full lg:w-auto flex flex-col items-center lg:items-start gap-4">
-                                            <div className="text-[80px] font-black italic text-gray-50 leading-none select-none">
-                                                {p.number}
-                                            </div>
-                                            <div className="w-16 h-16 bg-brand/10 text-brand flex items-center justify-center rounded-xl -mt-6">
-                                                <Icon size={28} strokeWidth={2} />
-                                            </div>
+                                        {/* Step circle */}
+                                        <div className="relative flex-shrink-0 w-16 h-16 bg-brand rounded-full flex items-center justify-center border-4 border-black z-10 shadow-[0_0_20px_rgba(114,47,55,0.4)]">
+                                            <Icon size={22} className="text-white" aria-hidden="true" />
                                         </div>
-                                        <div className="flex-grow">
-                                            <h2 className="text-2xl lg:text-3xl font-black italic tracking-tighter uppercase mb-4 text-black">
-                                                {p.title}
-                                            </h2>
-                                            <p className="text-gray-500 font-medium text-base leading-relaxed mb-6">
-                                                {p.desc}
+
+                                        {/* Content card */}
+                                        <div className="flex-1 group bg-[#0a0a0a] border border-white/8 p-8 rounded-2xl hover:border-brand/30 hover:-translate-y-0.5 transition-all duration-500">
+                                            {/* Giant faded number */}
+                                            <div
+                                                className="absolute top-2 right-4 text-[80px] font-black italic text-white/[0.02] leading-none select-none pointer-events-none"
+                                                aria-hidden="true"
+                                            >
+                                                {paso.number}
+                                            </div>
+
+                                            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-brand mb-2">
+                                                Paso {paso.number}
+                                            </div>
+                                            <h3 className="text-xl font-black italic tracking-tighter uppercase text-white mb-3 group-hover:text-brand transition-colors duration-300">
+                                                {paso.title}
+                                            </h3>
+                                            <p className="text-gray-400 text-sm font-medium leading-relaxed mb-5">
+                                                {paso.desc}
                                             </p>
-                                            <ul className="space-y-2">
-                                                {p.detalle.map((d, j) => (
-                                                    <li key={j} className="flex items-center gap-3 text-[11px] font-black uppercase tracking-widest text-gray-600">
-                                                        <div className="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0" />
+                                            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+                                                {paso.detalle.map((d, j) => (
+                                                    <li
+                                                        key={j}
+                                                        className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-500 group-hover:text-gray-400 transition-colors"
+                                                    >
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0" aria-hidden="true" />
                                                         {d}
                                                     </li>
                                                 ))}
@@ -145,66 +211,101 @@ export default function ComoFuncionaPage() {
                             })}
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                {/* Requisitos */}
-                <section className="bg-gray-50 border-t border-gray-100 py-16 lg:py-20">
-                    <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-                        <h2 className="text-2xl lg:text-3xl font-black italic tracking-tighter uppercase mb-10">
+            {/* Requisitos */}
+            <section className="bg-[#0a0a0a] border-y border-white/8 py-16 lg:py-20">
+                <div className="container-swiss">
+                    <div className="mb-10 animate-in">
+                        <div className="text-brand font-black text-[11px] uppercase tracking-[0.25em] mb-3">
+                            Antes de enviar
+                        </div>
+                        <h2 className="text-2xl lg:text-3xl font-black italic tracking-tighter uppercase text-white">
                             Requisitos de <span className="text-brand">Envío</span>
                         </h2>
-                        <div className="grid md:grid-cols-3 gap-6">
-                            {[
-                                { icon: Package, title: 'Embalaje', desc: 'Empaque correcto para el tipo de producto. Frágiles deben indicarse con etiqueta visible.' },
-                                { icon: Clock, title: 'Horario Pickup', desc: 'Solicita con al menos 2 horas de anticipación. Pickup disponible Lun-Sáb 08:00-17:00.' },
-                                { icon: Shield, title: 'Declaración', desc: 'Indica el valor del contenido para efectos del seguro de la guía. Requerido para COD.' },
-                            ].map((r, i) => {
-                                const Icon = r.icon
-                                return (
-                                    <div key={i} className="bg-white p-8 border border-gray-100">
-                                        <div className="w-12 h-12 bg-brand/10 text-brand flex items-center justify-center rounded-lg mb-6">
-                                            <Icon size={22} strokeWidth={2} />
-                                        </div>
-                                        <h3 className="text-lg font-black italic tracking-tighter uppercase mb-3 text-black">{r.title}</h3>
-                                        <p className="text-sm font-medium text-gray-500 leading-relaxed">{r.desc}</p>
-                                    </div>
-                                )
-                            })}
-                        </div>
                     </div>
-                </section>
-
-                {/* FAQs */}
-                <section className="bg-white border-t border-gray-100 py-20 lg:py-24">
-                    <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-                        <h2 className="text-2xl lg:text-3xl font-black italic tracking-tighter uppercase mb-12">
-                            Preguntas <span className="text-brand">Frecuentes</span>
-                        </h2>
-                        <div className="grid md:grid-cols-2 gap-8">
-                            {faqs.map((faq, i) => (
-                                <div key={i} className="border-l-2 border-brand pl-6 py-2">
-                                    <h3 className="font-black text-base uppercase tracking-tight mb-2 text-black">{faq.q}</h3>
-                                    <p className="text-sm font-medium text-gray-500 leading-relaxed">{faq.a}</p>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {REQUISITOS.map((r, i) => {
+                            const Icon = r.icon
+                            return (
+                                <div
+                                    key={i}
+                                    className="group bg-black border border-white/8 p-8 rounded-2xl hover:border-brand/30 hover:-translate-y-1 transition-all duration-500 animate-in"
+                                    style={{ animationDelay: `${i * 0.1}s` }}
+                                >
+                                    <div className="w-12 h-12 bg-brand/10 border border-brand/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand group-hover:border-brand transition-all duration-300">
+                                        <Icon size={20} className="text-brand group-hover:text-white transition-colors duration-300" strokeWidth={2.5} aria-hidden="true" />
+                                    </div>
+                                    <h3 className="text-base font-black italic tracking-tighter uppercase text-white mb-3 group-hover:text-brand transition-colors">
+                                        {r.title}
+                                    </h3>
+                                    <p className="text-gray-400 text-sm font-medium leading-relaxed">
+                                        {r.desc}
+                                    </p>
                                 </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            </section>
+
+            {/* FAQs — accordion */}
+            <section className="py-20 lg:py-24">
+                <div className="container-swiss">
+                    <div className="max-w-3xl">
+                        <div className="mb-10 animate-in">
+                            <div className="text-brand font-black text-[11px] uppercase tracking-[0.25em] mb-3">
+                                Resolvemos tus dudas
+                            </div>
+                            <h2 className="text-2xl lg:text-3xl font-black italic tracking-tighter uppercase text-white">
+                                Preguntas <span className="text-brand">Frecuentes</span>
+                            </h2>
+                        </div>
+
+                        <div className="space-y-3">
+                            {FAQS.map((faq, i) => (
+                                <details
+                                    key={i}
+                                    className="group bg-[#0a0a0a] border border-white/8 rounded-xl hover:border-brand/30 transition-all duration-300 animate-in"
+                                    style={{ animationDelay: `${i * 0.07}s` }}
+                                >
+                                    <summary className="flex items-center justify-between p-6 cursor-pointer list-none select-none">
+                                        <span className="text-sm font-black uppercase tracking-tight text-white group-hover:text-brand transition-colors duration-300 pr-4">
+                                            {faq.q}
+                                        </span>
+                                        <span
+                                            className="text-brand text-xl font-black flex-shrink-0 transition-transform duration-300 group-open:rotate-45"
+                                            aria-hidden="true"
+                                        >
+                                            +
+                                        </span>
+                                    </summary>
+                                    <p className="px-6 pb-6 text-gray-400 text-sm font-medium leading-relaxed border-t border-white/5 pt-4">
+                                        {faq.a}
+                                    </p>
+                                </details>
                             ))}
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                {/* CTA */}
-                <section className="bg-black text-white py-16">
-                    <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 text-center">
-                        <h2 className="text-2xl lg:text-3xl font-black italic tracking-tighter uppercase mb-4 text-white">
-                            Listo para empezar
-                        </h2>
-                        <p className="text-gray-400 font-medium mb-8 text-sm">
-                            Obtén tu tarifa en menos de 30 segundos.
-                        </p>
-                        <a href="/#cotizador" className="inline-flex items-center gap-3 bg-brand text-white font-black text-[11px] uppercase tracking-widest px-10 py-5 hover:bg-white hover:text-black transition-colors duration-300">
-                            COTIZAR MI ENVÍO <ArrowRight size={16} />
-                        </a>
-                    </div>
-                </section>
+            {/* CTA */}
+            <section className="bg-[#0a0a0a] border-t border-white/8 py-20 text-center">
+                <div className="container-swiss animate-in">
+                    <h2 className="text-3xl lg:text-4xl font-black italic tracking-tighter uppercase text-white mb-6">
+                        Listo para <span className="text-brand">Enviar</span>
+                    </h2>
+                    <p className="text-gray-400 font-medium mb-10 max-w-md mx-auto text-sm">
+                        Obtén tu tarifa en menos de 30 segundos. Sin registro ni compromiso.
+                    </p>
+                    <Link to="/cotizador" className="btn-primary inline-flex items-center gap-2">
+                        Cotizar Mi Envío
+                        <ArrowRight size={16} aria-hidden="true" />
+                    </Link>
+                </div>
+            </section>
         </main>
     )
 }
